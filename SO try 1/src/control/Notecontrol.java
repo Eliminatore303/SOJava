@@ -19,11 +19,13 @@ import view.Note;
 public class Notecontrol implements ActionListener{
 	private Note note;
 	private String name="";
+	private String saveN="";
 	
 	public Notecontrol(Note note) {
 		this.note=note;
 		note.getComboBox().addActionListener(this);
 		note.getComboBox_1().addActionListener(this);
+		name=note.getName();
 	}
 	
 	@Override
@@ -95,7 +97,7 @@ public class Notecontrol implements ActionListener{
        if (o.compareTo("Exit")==0) {
     	 // se chiudi, chiude sessione attuale
     	 // se file è aperto, salvo sessione corrente su file e chiudo tutto
-    	if (name.compareTo("")!=0) {
+    	if (name.compareTo("Uknown")!=0) {
        		txt=note.getTextArea().getText();
        		FileWriter writer;
 	   		try {
@@ -111,27 +113,30 @@ public class Notecontrol implements ActionListener{
    		note.getComboBox().setSelectedIndex(0);
    		note.getComboBox_1().setSelectedIndex(0);
    		note.setTitle("Uknown - NotePad");
-   		name="";
+   		name="Uknown";
        }
        
        if (o.compareTo("Save")==0) {
     	   //se salva, salvo stato corrente ma continuo a far scrivere
            //se salva come, salvo sessione corrente, con un testo scelto dallo user
     	   txt=note.getTextArea().getText();
-    	   try {
-    		   //scrittura su file e quindi salvataggio in file
-    		    FileWriter writer = new FileWriter("./src/file/"+name);
-   				writer.write(txt);
-   				writer.close();
-   				JOptionPane.showMessageDialog(null, "Save successful!!");
-    			} catch (IOException e1) {
-    				e1.printStackTrace();
-    		}
+    	   if (name.compareTo("Uknown")!=0) {
+    		   try {
+        		   //scrittura su file e quindi salvataggio in file
+        		    FileWriter writer = new FileWriter("./src/file/"+name);
+       				writer.write(txt);
+       				writer.close();
+       				JOptionPane.showMessageDialog(null, "Save successful!!");
+        			} catch (IOException e1) {
+        				e1.printStackTrace();
+        		}
+    	   }
+    	   
        }
        if (o.compareTo("Open")==0) {
     	   // se un file è già aperto pulisco textarea e apro nuova scheda
     	   // se Open, faccio scegliere il documento e lo apro (come prima)
-    	   if (name.compareTo("")!=0) {
+    	   if (name.compareTo("Uknown")!=0) {
     		   note.getTextArea().setText("");
         	   note.setVisible(false);
         	   note.setVisible(true);
@@ -191,7 +196,7 @@ public class Notecontrol implements ActionListener{
     	//se apro nuova finestra, pulisco text area e libero il nome del file aperto
     	//se New, salvo stato corrente, chiudo finestra e apro finestra nuova
         // -> se c'è un file aperto, salvo il file, lo chiudo e apro quello nuovo
-    	if (name.compareTo("")!=0) {
+    	if (name.compareTo("Uknown")!=0) {
     		txt=note.getTextArea().getText();
     		FileWriter writer;
 			try {
@@ -208,37 +213,74 @@ public class Notecontrol implements ActionListener{
 		note.getComboBox().setSelectedIndex(0);
 		note.getComboBox_1().setSelectedIndex(0);
 		note.setTitle("Uknown - NotePad");
-		name="";
+		name="Uknown";
        }
        if (o.compareTo("Save as...")==0) {
     	   //se sceglie di salvare, se file inesistente lo crea e salva il documento se non è vuoto
     	   // -> se il file esite già, lo sovrascrive
+    	   System.out.println(name);
     	   String input = JOptionPane.showInputDialog("Save file as:");
-    	   name=input;
-    	   note.getComboBox().setSelectedIndex(0);
-    	   note.getComboBox_1().setSelectedIndex(0);
-    	   note.setTitle(name+" - NotePad");
-    	   txt=note.getTextArea().getText();
-    	   if (! txt.isBlank()) {
-    		   try {
-	   				File myObj = new File("./src/file/"+name);
-			  	    if (myObj.createNewFile()) {
-			  	        System.out.println("File created: " + myObj.getName());
-			  	        FileWriter writer;
-		   				writer = new FileWriter("./src/file/"+name);
-		   				writer.write(txt);
-		   				writer.close();
-			  	    } else {
-			  	    	JOptionPane.showMessageDialog(null, "The file will be overwrite!");
-			  	        FileWriter writer;
-		   				writer = new FileWriter("./src/file/"+name);
-		   				writer.write(txt);
-		   				writer.close();
-			  	    }
-	   			} catch (IOException e1) {
-	   				e1.printStackTrace();
-	   			}
+    	   saveN=input;
+    	   if (saveN==null && name.compareTo("Uknown")!=0) {
+    		 //salvo in file già aperto
+    		 //ho un file aperto
+			 //altrimenti non ho file aperto
+    		   note.getComboBox().setSelectedIndex(0);
+        	   note.getComboBox_1().setSelectedIndex(0);
+        	   note.setTitle(name+" - NotePad");
+        	   txt=note.getTextArea().getText();
+        	   if (! txt.isBlank()) {
+        		   try {
+    	   				File myObj = new File("./src/file/"+name);
+    			  	    if (myObj.createNewFile()) {
+    			  	        System.out.println("File created: " + myObj.getName());
+    			  	        FileWriter writer;
+    		   				writer = new FileWriter("./src/file/"+name);
+    		   				writer.write(txt);
+    		   				writer.close();
+    			  	    } else {
+    			  	    	JOptionPane.showMessageDialog(null, "The file will be overwrite!");
+    			  	        FileWriter writer;
+    		   				writer = new FileWriter("./src/file/"+name);
+    		   				writer.write(txt);
+    		   				writer.close();
+    			  	    }
+    	   			} catch (IOException e1) {
+    	   				e1.printStackTrace();
+    	   			}
+        	   }
+    	   }else {
+			 //ho inserito testo nella input e quindi salvo nel file richiesto
+    		   if (! saveN.isBlank()) {
+        		   note.getComboBox().setSelectedIndex(0);
+            	   note.getComboBox_1().setSelectedIndex(0);
+            	   note.setTitle(saveN+" - NotePad");
+            	   txt=note.getTextArea().getText();
+            	   if (! txt.isBlank()) {
+            		   try {
+        	   				File myObj = new File("./src/file/"+saveN);
+        			  	    if (myObj.createNewFile()) {
+        			  	        System.out.println("File created: " + myObj.getName());
+        			  	        FileWriter writer;
+        		   				writer = new FileWriter("./src/file/"+saveN);
+        		   				writer.write(txt);
+        		   				writer.close();
+        			  	    } else {
+        			  	    	JOptionPane.showMessageDialog(null, "The file will be overwrite!");
+        			  	        FileWriter writer;
+        		   				writer = new FileWriter("./src/file/"+saveN);
+        		   				writer.write(txt);
+        		   				writer.close();
+        			  	    }
+        	   			} catch (IOException e1) {
+        	   				e1.printStackTrace();
+        	   			}
+            	   }
+            	   name=saveN; 
+    		   }
+    	   
     	   }
+    	   
        }
 	}
 	public void setNameEmpty() {
@@ -260,6 +302,9 @@ public class Notecontrol implements ActionListener{
 	        note.getTextArea().setText(s);
 		} catch (IOException e1) {
 			e1.printStackTrace();
+		}
+		if (note.getName().compareTo("Uknown")==0) {
+			note.setName(name);
 		}
 	}
 }

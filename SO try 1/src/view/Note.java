@@ -10,6 +10,7 @@ import control.Notecontrol;
 
 import javax.swing.JToolBar;
 import javax.swing.JComboBox;
+import javax.print.DocFlavor.STRING;
 import javax.swing.DefaultComboBoxModel;
 import java.awt.FlowLayout;
 import javax.swing.JLabel;
@@ -40,9 +41,11 @@ public class Note extends JFrame implements WindowListener{
 	private JScrollPane scrollPane;
 	private JTextArea textArea;
 	private Notecontrol n;
+	private String name;
 
 	public Note() {
-		setTitle("Uknown - NotePad");
+		name="Uknown";
+		setTitle(name+" - NotePad");
 		setIconImage(Toolkit.getDefaultToolkit().getImage(Window.class.getResource("/image/notepad.png")));
 		//setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 621, 376);
@@ -103,6 +106,12 @@ public class Note extends JFrame implements WindowListener{
 		textArea.setFont(new Font("Monospaced", Font.PLAIN, 13));
 		scrollPane.setViewportView(textArea);
 		
+	}
+	public void setName(String s) {
+		setTitle(s+" - NotePad");
+	}
+	public String getName() {
+		return name;
 	}
 
 	public JComboBox getComboBox() {

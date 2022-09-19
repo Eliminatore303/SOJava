@@ -12,6 +12,7 @@ import view.Window;
 public class SOcontrol implements ActionListener{
 	private Window fin;
 	private Clock clock;
+	private static int count=1;
 	
 	public SOcontrol(Window fin, Clock clock) {
 		this.fin=fin;
@@ -27,7 +28,10 @@ public class SOcontrol implements ActionListener{
 			new Calcontrol(new Calc());
 		}
 		if (e.getSource()==fin.getBtnNewButton_1()) {
-			new Notecontrol(new Note());
+			Note a= new Note();
+			a.setName(""+count);
+			new Notecontrol(a);
+			count++;
 		}
 		if (e.getSource()==fin.getBtnNewButton_2()) {
 			clock.setVisible(true);
