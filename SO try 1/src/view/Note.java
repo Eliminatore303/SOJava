@@ -109,6 +109,7 @@ public class Note extends JFrame implements WindowListener{
 	}
 	public void setName(String s) {
 		setTitle(s+" - NotePad");
+		name=s;
 	}
 	public String getName() {
 		return name;
