@@ -244,4 +244,22 @@ public class Notecontrol implements ActionListener{
 	public void setNameEmpty() {
 		name="";
 	}
+	public void openFile(String fileS) {
+		String s="";
+		name=fileS;
+		FileReader reader;
+		try {
+			//lettura file e apertura documento e scrittura dentro a text area di testo già scritto
+			note.setTitle(name+" - NotePad");
+			reader = new FileReader("./src/file/"+name);
+			int character;
+	        while ((character = reader.read()) != -1) {
+	        	s=s+(char) character;
+	        }
+	       // reader.close();
+	        note.getTextArea().setText(s);
+		} catch (IOException e1) {
+			e1.printStackTrace();
+		}
+	}
 }

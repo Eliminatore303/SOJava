@@ -8,6 +8,7 @@ import java.io.IOException;
 import javax.swing.JOptionPane;
 
 import view.FileExplorer;
+import view.Note;
 
 public class FileExplorerontrol implements ActionListener{
 	private FileExplorer fileE;
@@ -35,12 +36,24 @@ public class FileExplorerontrol implements ActionListener{
 			t=""+fileE.getTextField().getText();
 			if (! t.isBlank()) {
 				//open file
+				new Notecontrol(new Note()).openFile(t);
+				fileE.refresh();
 			}
 		}
 		if (e.getSource()==fileE.getBtnNewButton_2()) {
 			v=""+fileE.getTextField_1().getText();
 			if (! v.isBlank()) {
 				//delete file
+				File myObj = new File("./src/file/"+v);
+				//System.out.println(v);
+			    if (myObj.delete()) { 
+			      //System.out.println("File deleted: " + myObj.getName());
+			      JOptionPane.showMessageDialog(null, "File deleted: "+v);
+			    } else {
+			      //System.out.println("Failed to delete the file.");
+			    	JOptionPane.showMessageDialog(null, "Failed to delete the file.");
+			    }
+			    fileE.refresh();
 			}
 		}
 		if (e.getSource()==fileE.getBtnNewButton_3()) {
