@@ -10,10 +10,6 @@ import view.Note;
 import view.Window;
 
 public class SOcontrol implements ActionListener{
-	//per le istanze del blocco note bisogna creare istanze con nomi diversi e autoincrementali
-	//la creazione delle istanze è nella classe di controllo del Note
-	//quando apro un file o salvo, il nome dell' istanza cambia nel nome del file
-	//se provo ad aprire un file, controllo che non esistano istanze con il nome del file che voglio aprire
 	private Window fin;
 	private Clock clock;
 	

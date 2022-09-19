@@ -1,11 +1,9 @@
 # SOJava
 Cose da fare:
-1- completare funzione di cancellazione file in Control Explorer;
-2- completare apertura file con Note in Control Explorer;
-3- gestire eccezione/i riguardo apertura di un file con 2 istanze del Note;
-3.1- se file già aperto non faccio riaprire il file con nuova istanza;
-4- sistemazione di icona SO;
-5- ridimensionamento delle finestre;
+1- gestire eccezione/i riguardo apertura di un file con 2 istanze del Note;
+1.1- se file già aperto non faccio riaprire il file con nuova istanza;
+2- sistemazione di icona SO;
+3- ridimensionamento delle finestre;
 
 In futuro:
 1- per la calcolatrice utilizzare anche il tastierino numerico e i numeri della tastiera come input;
