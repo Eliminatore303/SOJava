@@ -7,6 +7,7 @@ import java.io.File;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.Arrays;
 
 import javax.swing.DefaultComboBoxModel;
@@ -21,11 +22,22 @@ public class Notecontrol implements ActionListener{
 	private String name="";
 	private String saveN="";
 	
+	//i need an integer for saving the window i am working on, so i can modify the file it is using
+	//the noteCount is the starting name of the note and it will be the key to acces to his position
+	private int noteCount;
+	//the variable is static so that every time one Note is created it will be add to the list
+	//this variabile is necessary to save the current state of the file and know all the opened file
+	private static ArrayList<String> fileList =new ArrayList<String>();
+	
 	public Notecontrol(Note note) {
 		this.note=note;
 		note.getComboBox().addActionListener(this);
 		note.getComboBox_1().addActionListener(this);
 		name=note.getName();
+		noteCount=Integer.parseInt(name);
+		//System.out.println(name);
+		addNoteToList();
+		printFileList();
 	}
 	
 	@Override
@@ -306,5 +318,18 @@ public class Notecontrol implements ActionListener{
 		if (note.getName().compareTo("Uknown")==0) {
 			note.setName(name);
 		}
+	}
+	public void addNoteToList() {
+		fileList.add(name);
+	}
+	public void printFileList() {
+		System.out.println("File list: ");
+		for (int i = 0; i < fileList.size(); i++) {
+			System.out.println("cell: "+i+" file open: "+fileList.get(i));
+		}
+	}
+	public boolean fileOpen(String fileName) {
+		
+		return true;
 	}
 }

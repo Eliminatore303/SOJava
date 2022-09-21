@@ -153,8 +153,8 @@ public class Note extends JFrame implements WindowListener{
 		comboBox.setSelectedIndex(0);
 		comboBox_1.setSelectedIndex(0);
 		textArea.setText("");
-		n=new Notecontrol(this);
-		n.setNameEmpty();
+		//n=new Notecontrol(this);
+		//n.setNameEmpty();
 	}
 
 	@Override

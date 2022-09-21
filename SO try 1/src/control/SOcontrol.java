@@ -28,9 +28,10 @@ public class SOcontrol implements ActionListener{
 			new Calcontrol(new Calc());
 		}
 		if (e.getSource()==fin.getBtnNewButton_1()) {
-			Note a= new Note();
-			a.setName(""+count);
-			new Notecontrol(a);
+			Note n= new Note();
+			Notecontrol nc;
+			n.setName(""+count);
+			nc=new Notecontrol(n);
 			count++;
 		}
 		if (e.getSource()==fin.getBtnNewButton_2()) {
