@@ -42,6 +42,7 @@ public class Note extends JFrame implements WindowListener{
 	private JTextArea textArea;
 	private Notecontrol n;
 	private String name;
+	private int key;
 
 	public Note() {
 		name="Uknown";
@@ -110,6 +111,8 @@ public class Note extends JFrame implements WindowListener{
 	public void setName(String s) {
 		setTitle(s+" - NotePad");
 		name=s;
+		//the key of the note it is saved, so when I closed the file it will not be more aviable
+		key=Integer.parseInt(s);
 	}
 	public String getName() {
 		return name;
@@ -153,6 +156,7 @@ public class Note extends JFrame implements WindowListener{
 		comboBox.setSelectedIndex(0);
 		comboBox_1.setSelectedIndex(0);
 		textArea.setText("");
+		Notecontrol.setFileOpenNo(key);
 		//n=new Notecontrol(this);
 		//n.setNameEmpty();
 	}

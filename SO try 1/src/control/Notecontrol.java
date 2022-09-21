@@ -35,9 +35,7 @@ public class Notecontrol implements ActionListener{
 		note.getComboBox_1().addActionListener(this);
 		name=note.getName();
 		noteCount=Integer.parseInt(name);
-		//System.out.println(name);
 		addNoteToList();
-		printFileList();
 	}
 	
 	@Override
@@ -125,6 +123,7 @@ public class Notecontrol implements ActionListener{
    		note.getComboBox().setSelectedIndex(0);
    		note.getComboBox_1().setSelectedIndex(0);
    		note.setTitle("Uknown - NotePad");
+   		setFileListName("Uknown");
    		name="Uknown";
        }
        
@@ -155,6 +154,7 @@ public class Notecontrol implements ActionListener{
         	   note.getComboBox().setSelectedIndex(0);
         	   note.getComboBox_1().setSelectedIndex(0);
         	   note.setTitle(name+" - NotePad");
+        	   setFileListName(name);
     	   }
     	   String[] files;
     	   File f = new File("./src/file");
@@ -190,6 +190,7 @@ public class Notecontrol implements ActionListener{
 				try {
 					//lettura file e apertura documento e scrittura dentro a text area di testo già scritto
 					note.setTitle(name+" - NotePad");
+					setFileListName(name);
 					reader = new FileReader("./src/file/"+name);
 					 int character;
 			           while ((character = reader.read()) != -1) {
@@ -225,6 +226,7 @@ public class Notecontrol implements ActionListener{
 		note.getComboBox().setSelectedIndex(0);
 		note.getComboBox_1().setSelectedIndex(0);
 		note.setTitle("Uknown - NotePad");
+		setFileListName("Uknown");
 		name="Uknown";
        }
        if (o.compareTo("Save as...")==0) {
@@ -240,6 +242,7 @@ public class Notecontrol implements ActionListener{
     		   note.getComboBox().setSelectedIndex(0);
         	   note.getComboBox_1().setSelectedIndex(0);
         	   note.setTitle(name+" - NotePad");
+        	   setFileListName(name);
         	   txt=note.getTextArea().getText();
         	   if (! txt.isBlank()) {
         		   try {
@@ -267,6 +270,7 @@ public class Notecontrol implements ActionListener{
         		   note.getComboBox().setSelectedIndex(0);
             	   note.getComboBox_1().setSelectedIndex(0);
             	   note.setTitle(saveN+" - NotePad");
+            	   setFileListName(saveN);
             	   txt=note.getTextArea().getText();
             	   if (! txt.isBlank()) {
             		   try {
@@ -292,7 +296,6 @@ public class Notecontrol implements ActionListener{
     		   }
     	   
     	   }
-    	   
        }
 	}
 	public void setNameEmpty() {
@@ -305,6 +308,7 @@ public class Notecontrol implements ActionListener{
 		try {
 			//lettura file e apertura documento e scrittura dentro a text area di testo già scritto
 			note.setTitle(name+" - NotePad");
+			setFileListName(name);
 			reader = new FileReader("./src/file/"+name);
 			int character;
 	        while ((character = reader.read()) != -1) {
@@ -328,8 +332,37 @@ public class Notecontrol implements ActionListener{
 			System.out.println("cell: "+i+" file open: "+fileList.get(i));
 		}
 	}
-	public boolean fileOpen(String fileName) {
-		
-		return true;
+	public static void printFileListS() {
+		System.out.println("File list: ");
+		for (int i = 0; i < fileList.size(); i++) {
+			System.out.println("cell: "+i+" file open: "+fileList.get(i));
+		}
+	}
+	public boolean fileIsOpen(String fileName) {
+		int x=0;
+		//return TRUE if the file is open otherwise return false
+		boolean flag=false;
+		boolean found=false;
+		while(flag) {
+			if (x<fileList.size()) {
+				if (fileList.get(x).compareTo(fileName)==0) {
+					//file I am searcing for is in the list
+					found=true;
+					flag=false;
+				}else {
+					x++;
+				}
+			}else {
+				flag=false;
+			}
+		}
+		return found;//true found, otherwise not found
+	}
+	public static void setFileOpenNo(int key) {
+		//the note that is closing will be nullifed in the list
+		fileList.set(key, " ");
+	}
+	private void setFileListName(String s) {
+		fileList.set(noteCount, s);
 	}
 }

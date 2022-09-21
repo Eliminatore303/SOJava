@@ -12,7 +12,7 @@ import view.Window;
 public class SOcontrol implements ActionListener{
 	private Window fin;
 	private Clock clock;
-	private static int count=1;
+	private static int count=0;
 	
 	public SOcontrol(Window fin, Clock clock) {
 		this.fin=fin;
