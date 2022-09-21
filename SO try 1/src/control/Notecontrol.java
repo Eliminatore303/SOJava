@@ -21,10 +21,12 @@ public class Notecontrol implements ActionListener{
 	private Note note;
 	private String name="";
 	private String saveN="";
-	
+	//get the file i will open
+	private String openF="";
 	//i need an integer for saving the window i am working on, so i can modify the file it is using
 	//the noteCount is the starting name of the note and it will be the key to acces to his position
 	private int noteCount;
+	private static int count=0;
 	//the variable is static so that every time one Note is created it will be add to the list
 	//this variabile is necessary to save the current state of the file and know all the opened file
 	private static ArrayList<String> fileList =new ArrayList<String>();
@@ -34,7 +36,8 @@ public class Notecontrol implements ActionListener{
 		note.getComboBox().addActionListener(this);
 		note.getComboBox_1().addActionListener(this);
 		name=note.getName();
-		noteCount=Integer.parseInt(name);
+		noteCount=count;
+		count++;
 		addNoteToList();
 	}
 	
@@ -163,7 +166,6 @@ public class Notecontrol implements ActionListener{
     	   bottone_1.setText("Select File!");
     	   // Populates the array with names of files and directories
     	   files = f.list();
-    	   //System.out.println(Arrays.toString(files));
 	       for (int i = 0; i < files.length; i++) {
 	    	   fileList.addItem(new String(files[i]));
 	       }
@@ -184,24 +186,31 @@ public class Notecontrol implements ActionListener{
 	       bottone_1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				String s="";
-				name=(String) fileList.getSelectedItem();
+				openF=(String) fileList.getSelectedItem();
 				diag.setVisible(false);
-				FileReader reader;
-				try {
-					//lettura file e apertura documento e scrittura dentro a text area di testo già scritto
-					note.setTitle(name+" - NotePad");
-					setFileListName(name);
-					reader = new FileReader("./src/file/"+name);
-					 int character;
-			           while ((character = reader.read()) != -1) {
-			           	s=s+(char) character;
-			           }
-			           reader.close();
-			         note.getTextArea().setText(s);
-			         s="";
-				} catch (IOException e1) {
-					e1.printStackTrace();
+				//if the file i want to open is already open, it will not be open otherwise it can be open
+				if (! fileIsOpen(name)) {
+					FileReader reader;
+					try {
+						//lettura file e apertura documento e scrittura dentro a text area di testo già scritto
+						note.setTitle(openF+" - NotePad");
+						setFileListName(openF);
+						reader = new FileReader("./src/file/"+openF);
+						 int character;
+				           while ((character = reader.read()) != -1) {
+				           	s=s+(char) character;
+				           }
+				           reader.close();
+				         note.getTextArea().setText(s);
+				         s="";
+				         name=openF;
+					} catch (IOException e1) {
+						e1.printStackTrace();
+					}
+				}else {
+					JOptionPane.showMessageDialog(null, "File already open you can't open it an other time!!!");
 				}
+				
 			}
 	       });
        }
@@ -232,70 +241,73 @@ public class Notecontrol implements ActionListener{
        if (o.compareTo("Save as...")==0) {
     	   //se sceglie di salvare, se file inesistente lo crea e salva il documento se non è vuoto
     	   // -> se il file esite già, lo sovrascrive
-    	   System.out.println(name);
     	   String input = JOptionPane.showInputDialog("Save file as:");
     	   saveN=input;
-    	   if (saveN==null && name.compareTo("Uknown")!=0) {
-    		 //salvo in file già aperto
-    		 //ho un file aperto
-			 //altrimenti non ho file aperto
-    		   note.getComboBox().setSelectedIndex(0);
-        	   note.getComboBox_1().setSelectedIndex(0);
-        	   note.setTitle(name+" - NotePad");
-        	   setFileListName(name);
-        	   txt=note.getTextArea().getText();
-        	   if (! txt.isBlank()) {
-        		   try {
-    	   				File myObj = new File("./src/file/"+name);
-    			  	    if (myObj.createNewFile()) {
-    			  	        System.out.println("File created: " + myObj.getName());
-    			  	        FileWriter writer;
-    		   				writer = new FileWriter("./src/file/"+name);
-    		   				writer.write(txt);
-    		   				writer.close();
-    			  	    } else {
-    			  	    	JOptionPane.showMessageDialog(null, "The file will be overwrite!");
-    			  	        FileWriter writer;
-    		   				writer = new FileWriter("./src/file/"+name);
-    		   				writer.write(txt);
-    		   				writer.close();
-    			  	    }
-    	   			} catch (IOException e1) {
-    	   				e1.printStackTrace();
-    	   			}
-        	   }
+    	   if (! fileIsOpen(saveN) || ( fileIsOpen(saveN) && saveN.compareTo(name)==0)) {
+    		   if (saveN==null && name.compareTo("Uknown")!=0) {
+    	    		 //salvo in file già aperto
+    	    		 //ho un file aperto
+    				 //altrimenti non ho file aperto
+    	    		   note.getComboBox().setSelectedIndex(0);
+    	        	   note.getComboBox_1().setSelectedIndex(0);
+    	        	   note.setTitle(name+" - NotePad");
+    	        	   setFileListName(name);
+    	        	   txt=note.getTextArea().getText();
+    	        	   if (! txt.isBlank()) {
+    	        		   try {
+    	    	   				File myObj = new File("./src/file/"+name);
+    	    			  	    if (myObj.createNewFile()) {
+    	    			  	        FileWriter writer;
+    	    		   				writer = new FileWriter("./src/file/"+name);
+    	    		   				writer.write(txt);
+    	    		   				writer.close();
+    	    			  	    } else {
+    	    			  	    	JOptionPane.showMessageDialog(null, "The file will be overwrite!");
+    	    			  	        FileWriter writer;
+    	    		   				writer = new FileWriter("./src/file/"+name);
+    	    		   				writer.write(txt);
+    	    		   				writer.close();
+    	    			  	    }
+    	    	   			} catch (IOException e1) {
+    	    	   				e1.printStackTrace();
+    	    	   			}
+    	        	   }
+    	    	   }else {
+    				 //ho inserito testo nella input e quindi salvo nel file richiesto
+    	    		   if (! saveN.isBlank()) {
+    	        		   note.getComboBox().setSelectedIndex(0);
+    	            	   note.getComboBox_1().setSelectedIndex(0);
+    	            	   note.setTitle(saveN+" - NotePad");
+    	            	   setFileListName(saveN);
+    	            	   txt=note.getTextArea().getText();
+    	            	   if (! txt.isBlank()) {
+    	            		   try {
+    	        	   				File myObj = new File("./src/file/"+saveN);
+    	        			  	    if (myObj.createNewFile()) {
+    	        			  	        FileWriter writer;
+    	        		   				writer = new FileWriter("./src/file/"+saveN);
+    	        		   				writer.write(txt);
+    	        		   				writer.close();
+    	        			  	    } else {
+    	        			  	    	JOptionPane.showMessageDialog(null, "The file will be overwrite!");
+    	        			  	        FileWriter writer;
+    	        		   				writer = new FileWriter("./src/file/"+saveN);
+    	        		   				writer.write(txt);
+    	        		   				writer.close();
+    	        			  	    }
+    	        	   			} catch (IOException e1) {
+    	        	   				e1.printStackTrace();
+    	        	   			}
+    	            	   }
+    	            	   name=saveN; 
+    	    		   }
+    	    	   
+    	    	   }
     	   }else {
-			 //ho inserito testo nella input e quindi salvo nel file richiesto
-    		   if (! saveN.isBlank()) {
-        		   note.getComboBox().setSelectedIndex(0);
-            	   note.getComboBox_1().setSelectedIndex(0);
-            	   note.setTitle(saveN+" - NotePad");
-            	   setFileListName(saveN);
-            	   txt=note.getTextArea().getText();
-            	   if (! txt.isBlank()) {
-            		   try {
-        	   				File myObj = new File("./src/file/"+saveN);
-        			  	    if (myObj.createNewFile()) {
-        			  	        System.out.println("File created: " + myObj.getName());
-        			  	        FileWriter writer;
-        		   				writer = new FileWriter("./src/file/"+saveN);
-        		   				writer.write(txt);
-        		   				writer.close();
-        			  	    } else {
-        			  	    	JOptionPane.showMessageDialog(null, "The file will be overwrite!");
-        			  	        FileWriter writer;
-        		   				writer = new FileWriter("./src/file/"+saveN);
-        		   				writer.write(txt);
-        		   				writer.close();
-        			  	    }
-        	   			} catch (IOException e1) {
-        	   				e1.printStackTrace();
-        	   			}
-            	   }
-            	   name=saveN; 
-    		   }
-    	   
+    		   //the user is trying to save in a file that is already open 
+			JOptionPane.showMessageDialog(null, "The file you are trying to save in is already open from an other note, try an other one!!!");
     	   }
+    	   
        }
 	}
 	public void setNameEmpty() {
@@ -319,9 +331,9 @@ public class Notecontrol implements ActionListener{
 		} catch (IOException e1) {
 			e1.printStackTrace();
 		}
-		if (note.getName().compareTo("Uknown")==0) {
-			note.setName(name);
-		}
+		//if (note.getName().compareTo("Uknown")==0) {
+		//	note.setName(name);
+		//}
 	}
 	public void addNoteToList() {
 		fileList.add(name);
@@ -338,10 +350,10 @@ public class Notecontrol implements ActionListener{
 			System.out.println("cell: "+i+" file open: "+fileList.get(i));
 		}
 	}
-	public boolean fileIsOpen(String fileName) {
+	public static boolean fileIsOpen(String fileName) {
 		int x=0;
 		//return TRUE if the file is open otherwise return false
-		boolean flag=false;
+		boolean flag=true;
 		boolean found=false;
 		while(flag) {
 			if (x<fileList.size()) {

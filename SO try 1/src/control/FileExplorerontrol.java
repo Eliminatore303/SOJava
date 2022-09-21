@@ -36,8 +36,16 @@ public class FileExplorerontrol implements ActionListener{
 			t=""+fileE.getTextField().getText();
 			if (! t.isBlank()) {
 				//open file
-				new Notecontrol(new Note()).openFile(t);
-				fileE.refresh();
+				
+				//if file is not already open, open the file, otherwise open an error message
+				if (! Notecontrol.fileIsOpen(t)) {
+					//false the file is not open so i open it
+					new Notecontrol(new Note()).openFile(t);
+					fileE.refresh();
+				}else {
+					//true show a message error
+					JOptionPane.showMessageDialog(null, "File already open!!!");
+				}
 			}
 		}
 		if (e.getSource()==fileE.getBtnNewButton_2()) {
@@ -45,15 +53,21 @@ public class FileExplorerontrol implements ActionListener{
 			if (! v.isBlank()) {
 				//delete file
 				File myObj = new File("./src/file/"+v);
-				//System.out.println(v);
-			    if (myObj.delete()) { 
-			      //System.out.println("File deleted: " + myObj.getName());
-			      JOptionPane.showMessageDialog(null, "File deleted: "+v);
-			    } else {
-			      //System.out.println("Failed to delete the file.");
-			    	JOptionPane.showMessageDialog(null, "Failed to delete the file.");
-			    }
-			    fileE.refresh();
+				
+				if (! Notecontrol.fileIsOpen(v)) {
+					if (myObj.delete()) { 
+					      //System.out.println("File deleted: " + myObj.getName());
+					      JOptionPane.showMessageDialog(null, "File deleted: "+v);
+					    } else {
+					      //System.out.println("Failed to delete the file.");
+					    	JOptionPane.showMessageDialog(null, "Failed to delete the file.");
+					    }
+					    fileE.refresh();
+					//falso il file non è in uso
+				}else {
+					//vero il file è in uso
+					JOptionPane.showMessageDialog(null, "File is open you can't delete it!!!");
+				}
 			}
 		}
 		if (e.getSource()==fileE.getBtnNewButton_3()) {
