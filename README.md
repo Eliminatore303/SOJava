@@ -1,8 +1,11 @@
 # SOJava
 Cose da fare:
 
-1) gestire eccezione/i riguardo apertura di un file con 2 istanze del Note;
-1.1) se file già aperto non faccio riaprire il file con nuova istanza;
+1) gestire eccezione/i riguardo apertura di un file con 2 istanze del Note; (Done)
+1.1) se file già aperto non faccio riaprire il file con nuova istanza; (Done)
+2) sistemazione immagini e file per il .jar
+2.1) immagini devo essere visibili nel progetto una volta esportato
+2.2) ci deve essere la possibilità usare i file tramite la GUI anche se il progetto è compresso
 2) sistemazione di icona SO;
 3) ridimensionamento delle finestre;
 
