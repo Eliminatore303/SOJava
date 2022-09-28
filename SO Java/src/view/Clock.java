@@ -25,7 +25,7 @@ public class Clock extends JFrame implements WindowListener, Runnable{
 	//private boolean flag;
 
 	public Clock() {
-		setIconImage(Toolkit.getDefaultToolkit().getImage(Calc.class.getResource("/image/clock.png")));
+		//setIconImage(Toolkit.getDefaultToolkit().getImage(Calc.class.getResource("./image/clock.png")));
 		setResizable(false);
 		setTitle("Clock");
 		setBounds(500, 100, 250, 150);

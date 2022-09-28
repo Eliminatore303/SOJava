@@ -16,9 +16,13 @@ public class Window extends JFrame {
 	private JPanel contentPane;
 	private JButton btnNewButton;
 	private Icon icon;
+	private ImageIcon image;
 	private Icon icon2;
+	private ImageIcon image2;
 	private Icon icon3;
+	private ImageIcon image3;
 	private Icon icon4;
+	private ImageIcon image4;
 	private JLabel lblNewLabel;
 	private JButton btnNewButton_1;
 	private JLabel lblNewLabel_1;
@@ -39,8 +43,9 @@ public class Window extends JFrame {
 		setResizable(false);
 		setVisible(true);
 		
-		icon = new ImageIcon("./src/image/calc.png");
-		btnNewButton = new JButton(icon);
+		image= new ImageIcon(getClass().getClassLoader().getResource("calc.png"));
+		//icon = new ImageIcon("./src/image/calc.png");
+		btnNewButton = new JButton(image);
 		btnNewButton.setBounds(10, 11, 100, 100);
 		contentPane.add(btnNewButton);
 		
@@ -49,8 +54,9 @@ public class Window extends JFrame {
 		lblNewLabel.setBounds(10, 122, 100, 14);
 		contentPane.add(lblNewLabel);
 		
-		icon2 = new ImageIcon("./src/image/notepad.png");
-		btnNewButton_1 = new JButton(icon2);
+		image2= new ImageIcon(getClass().getClassLoader().getResource("notepad.png"));
+		//icon2 = new ImageIcon("./src/image/notepad.png");
+		btnNewButton_1 = new JButton(image2);
 		btnNewButton_1.setBounds(145, 11, 100, 100);
 		contentPane.add(btnNewButton_1);
 		
@@ -59,8 +65,9 @@ public class Window extends JFrame {
 		lblNewLabel_1.setBounds(145, 122, 100, 14);
 		contentPane.add(lblNewLabel_1);
 		
-		icon3 = new ImageIcon("./src/image/clock.png");
-		btnNewButton_2 = new JButton(icon3);
+		image3= new ImageIcon(getClass().getClassLoader().getResource("clock.png"));
+		//icon3 = new ImageIcon("./src/image/clock.png");
+		btnNewButton_2 = new JButton(image3);
 		btnNewButton_2.setBounds(10, 146, 100, 100);
 		contentPane.add(btnNewButton_2);
 		
@@ -69,8 +76,9 @@ public class Window extends JFrame {
 		lblNewLabel_3.setBounds(10, 257, 100, 14);
 		contentPane.add(lblNewLabel_3);
 		
-		icon4 = new ImageIcon("./src/image/explorer.png");
-		btnNewButton_3 = new JButton(icon4);
+		image4= new ImageIcon(getClass().getClassLoader().getResource("explorer.png"));
+		//icon4 = new ImageIcon("./src/image/explorer.png");
+		btnNewButton_3 = new JButton(image4);
 		btnNewButton_3.setBounds(145, 146, 100, 100);
 		contentPane.add(btnNewButton_3);
 		
