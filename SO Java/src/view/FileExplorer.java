@@ -1,5 +1,6 @@
 package view;
 
+import java.awt.Image;
 import java.awt.event.WindowEvent;
 import java.awt.event.WindowListener;
 import java.io.File;
@@ -7,7 +8,7 @@ import java.io.File;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
-import javax.swing.DefaultComboBoxModel;
+import javax.swing.ImageIcon;
 import javax.swing.JComboBox;
 import javax.swing.JButton;
 import javax.swing.JLabel;
@@ -29,11 +30,16 @@ public class FileExplorer extends JFrame implements WindowListener{
 	private JLabel lblNewLabel_3;
 	private JTextField textField_2;
 	private JButton btnNewButton_3;
+	private Image image;
+	private ImageIcon icon;
 
 	public FileExplorer() {
 		setResizable(false);
 		setTitle("File Explorer");
 		setBounds(100, 100, 450, 190);
+		icon= new ImageIcon(getClass().getClassLoader().getResource("explorer.png"));
+		image = icon.getImage();
+		setIconImage(image);
 		contentPane = new JPanel();
 		setVisible(true);
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));

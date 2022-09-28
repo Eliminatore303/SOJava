@@ -6,6 +6,7 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 import java.awt.FlowLayout;
+import java.awt.Image;
 import java.awt.event.WindowEvent;
 import java.awt.event.WindowListener;
 
@@ -14,7 +15,7 @@ import javax.swing.JButton;
 import java.awt.Color;
 import javax.swing.SwingConstants;
 import javax.swing.BoxLayout;
-import java.awt.Toolkit;
+import javax.swing.ImageIcon;
 
 public class Calc extends JFrame implements WindowListener{
 
@@ -49,9 +50,13 @@ public class Calc extends JFrame implements WindowListener{
 	private JPanel panel_6;
 	private JButton buttonCanc;
 	private JPanel panel_7;
+	private Image image;
+	private ImageIcon icon;
 	
 	public Calc() {
-		setIconImage(Toolkit.getDefaultToolkit().getImage(Calc.class.getResource("/image/calc.png")));
+		icon= new ImageIcon(getClass().getClassLoader().getResource("calc.png"));
+		image = icon.getImage();
+		setIconImage(image);
 		setResizable(false);
 		setTitle("Calcolatrice");
 		//setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);

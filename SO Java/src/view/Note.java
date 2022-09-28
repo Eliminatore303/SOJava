@@ -10,12 +10,13 @@ import control.Notecontrol;
 
 import javax.swing.JToolBar;
 import javax.swing.JComboBox;
-import javax.print.DocFlavor.STRING;
 import javax.swing.DefaultComboBoxModel;
+import javax.swing.ImageIcon;
+
 import java.awt.FlowLayout;
 import javax.swing.JLabel;
 import java.awt.Font;
-import java.awt.Toolkit;
+import java.awt.Image;
 import java.awt.event.WindowEvent;
 import java.awt.event.WindowListener;
 
@@ -43,12 +44,15 @@ public class Note extends JFrame implements WindowListener{
 	private Notecontrol n;
 	private String name;
 	private int key;
+	private Image image;
+	private ImageIcon icon;
 
 	public Note() {
 		name="Uknown";
 		setTitle(name+" - NotePad");
-		setIconImage(Toolkit.getDefaultToolkit().getImage(Window.class.getResource("/image/notepad.png")));
-		//setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		icon= new ImageIcon(getClass().getClassLoader().getResource("notepad.png"));
+		image = icon.getImage();
+		setIconImage(image);
 		setBounds(100, 100, 621, 376);
 		contentPane = new JPanel();
 		addWindowListener(this);
