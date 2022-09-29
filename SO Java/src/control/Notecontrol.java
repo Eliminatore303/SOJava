@@ -189,7 +189,7 @@ public class Notecontrol implements ActionListener{
 				openF=(String) fileList.getSelectedItem();
 				diag.setVisible(false);
 				//if the file i want to open is already open, it will not be open otherwise it can be open
-				if (! fileIsOpen(name)) {
+				if (! fileIsOpen(openF)) {
 					FileReader reader;
 					try {
 						//lettura file e apertura documento e scrittura dentro a text area di testo già scritto
