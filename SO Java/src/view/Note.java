@@ -41,7 +41,6 @@ public class Note extends JFrame implements WindowListener{
 	private JLabel lblNewLabel_1;
 	private JScrollPane scrollPane;
 	private JTextArea textArea;
-	private Notecontrol n;
 	private String name;
 	private int key;
 	private Image image;

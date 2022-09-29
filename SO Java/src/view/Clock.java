@@ -12,7 +12,6 @@ import javax.swing.border.EmptyBorder;
 import javax.swing.JLabel;
 import javax.swing.SwingConstants;
 import java.awt.Font;
-import java.awt.Toolkit;
 import java.awt.Color;
 
 public class Clock extends JFrame implements WindowListener, Runnable{

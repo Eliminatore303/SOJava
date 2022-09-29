@@ -5,7 +5,6 @@ import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 import javax.swing.JButton;
 
-import javax.swing.Icon;
 import javax.swing.ImageIcon;
 import javax.swing.JLabel;
 import javax.swing.SwingConstants;
@@ -15,18 +14,13 @@ public class Window extends JFrame {
 	private static final long serialVersionUID = 1L;
 	private JPanel contentPane;
 	private JButton btnNewButton;
-	private Icon icon;
 	private ImageIcon image;
-	private Icon icon2;
 	private ImageIcon image2;
-	private Icon icon3;
 	private ImageIcon image3;
-	private Icon icon4;
 	private ImageIcon image4;
 	private JLabel lblNewLabel;
 	private JButton btnNewButton_1;
 	private JLabel lblNewLabel_1;
-	private JLabel lblNewLabel_2;
 	private JButton btnNewButton_2;
 	private JLabel lblNewLabel_3;
 	private JButton btnNewButton_3;
