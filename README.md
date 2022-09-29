@@ -6,9 +6,13 @@ Cose da fare:
 2) sistemazione immagini e file per il .jar
 2.1) immagini devo essere visibili nel progetto una volta esportato (Done)
 2.2) impostare le immagini delle finestre quando il file viene esportato (Done)
-2.3) ci deve essere la possibilità usare i file tramite la GUI anche se il progetto è compresso
-2) sistemazione di icona SO;
-3) ridimensionamento delle finestre;
+3) creazione della struttura del progetto (struttura di directory)
+4) ci deve essere la possibilità usare i file tramite la GUI anche se il progetto è compresso
+4.1) per apertura dei file, non caricare o aprire file eseguibili
+4.2) verranno solo aperti i file della cartella /File
+4.2.1)  modificare path dei file aperti da explorer e note
+5) sistemazione di icona SO;
+6) ridimensionamento delle finestre;
 
 In futuro:
 
