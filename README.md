@@ -8,9 +8,10 @@ Cose da fare:
 2.2) impostare le immagini delle finestre quando il file viene esportato (Done)
 3) creazione della struttura del progetto (struttura di directory) (Done)
 4) ci deve essere la possibilità usare i file tramite la GUI anche se il progetto è compresso (Done)
-4.1) per apertura dei file, non caricare o aprire file eseguibili
-4.2) verranno solo aperti i file della cartella /File (Done)
-4.2.1)  modificare path dei file aperti da explorer e note (Done)
+4.1) verranno solo aperti i file della cartella /File (Done)
+4.1.1)  modificare path dei file aperti da explorer e note (Done)
+5) sistemazione bug, quando salvo (save not save as..) senza aprire un file non permetterlo
+6) mettere come default per salvare un file tipo: default.txt
 5) sistemazione di icona SO;
 6) ridimensionamento delle finestre;
 
