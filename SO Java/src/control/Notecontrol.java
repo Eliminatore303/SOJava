@@ -112,7 +112,7 @@ public class Notecontrol implements ActionListener{
        		txt=note.getTextArea().getText();
        		FileWriter writer;
 	   		try {
-	   			writer = new FileWriter("./src/file/"+name);
+	   			writer = new FileWriter("./file"+name);
 	   			writer.write(txt);
 	   			writer.close();
 	   		} catch (IOException e1) {
@@ -135,7 +135,7 @@ public class Notecontrol implements ActionListener{
     	   if (name.compareTo("Uknown")!=0) {
     		   try {
         		   //scrittura su file e quindi salvataggio in file
-        		    FileWriter writer = new FileWriter("./src/file/"+name);
+        		    FileWriter writer = new FileWriter("./file"+name);
        				writer.write(txt);
        				writer.close();
        				JOptionPane.showMessageDialog(null, "Save successful!!");
@@ -158,7 +158,7 @@ public class Notecontrol implements ActionListener{
         	   setFileListName(name);
     	   }
     	   String[] files;
-    	   File f = new File("./src/file");
+    	   File f = new File("./file");
     	   JComboBox fileList=new JComboBox();
     	   JButton bottone_1= new JButton();
     	   bottone_1.setText("Select File!");
@@ -193,7 +193,7 @@ public class Notecontrol implements ActionListener{
 						//lettura file e apertura documento e scrittura dentro a text area di testo già scritto
 						note.setTitle(openF+" - NotePad");
 						setFileListName(openF);
-						reader = new FileReader("./src/file/"+openF);
+						reader = new FileReader("./file"+openF);
 						 int character;
 				           while ((character = reader.read()) != -1) {
 				           	s=s+(char) character;
@@ -220,7 +220,7 @@ public class Notecontrol implements ActionListener{
     		txt=note.getTextArea().getText();
     		FileWriter writer;
 			try {
-				writer = new FileWriter("./src/file/"+name);
+				writer = new FileWriter("./file"+name);
 				writer.write(txt);
 				writer.close();
 			} catch (IOException e1) {
@@ -253,16 +253,16 @@ public class Notecontrol implements ActionListener{
     	        	   txt=note.getTextArea().getText();
     	        	   if (! txt.isBlank()) {
     	        		   try {
-    	    	   				File myObj = new File("./src/file/"+name);
+    	    	   				File myObj = new File("./file"+name);
     	    			  	    if (myObj.createNewFile()) {
     	    			  	        FileWriter writer;
-    	    		   				writer = new FileWriter("./src/file/"+name);
+    	    		   				writer = new FileWriter("./file"+name);
     	    		   				writer.write(txt);
     	    		   				writer.close();
     	    			  	    } else {
     	    			  	    	JOptionPane.showMessageDialog(null, "The file will be overwrite!");
     	    			  	        FileWriter writer;
-    	    		   				writer = new FileWriter("./src/file/"+name);
+    	    		   				writer = new FileWriter("./file"+name);
     	    		   				writer.write(txt);
     	    		   				writer.close();
     	    			  	    }
@@ -280,16 +280,16 @@ public class Notecontrol implements ActionListener{
     	            	   txt=note.getTextArea().getText();
     	            	   if (! txt.isBlank()) {
     	            		   try {
-    	        	   				File myObj = new File("./src/file/"+saveN);
+    	        	   				File myObj = new File("./file"+saveN);
     	        			  	    if (myObj.createNewFile()) {
     	        			  	        FileWriter writer;
-    	        		   				writer = new FileWriter("./src/file/"+saveN);
+    	        		   				writer = new FileWriter("./file"+saveN);
     	        		   				writer.write(txt);
     	        		   				writer.close();
     	        			  	    } else {
     	        			  	    	JOptionPane.showMessageDialog(null, "The file will be overwrite!");
     	        			  	        FileWriter writer;
-    	        		   				writer = new FileWriter("./src/file/"+saveN);
+    	        		   				writer = new FileWriter("./file"+saveN);
     	        		   				writer.write(txt);
     	        		   				writer.close();
     	        			  	    }
@@ -319,7 +319,7 @@ public class Notecontrol implements ActionListener{
 			//lettura file e apertura documento e scrittura dentro a text area di testo già scritto
 			note.setTitle(name+" - NotePad");
 			setFileListName(name);
-			reader = new FileReader("./src/file/"+name);
+			reader = new FileReader("./file"+name);
 			int character;
 	        while ((character = reader.read()) != -1) {
 	        	s=s+(char) character;

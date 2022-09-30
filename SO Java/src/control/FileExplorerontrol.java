@@ -52,7 +52,7 @@ public class FileExplorerontrol implements ActionListener{
 			v=""+fileE.getTextField_1().getText();
 			if (! v.isBlank()) {
 				//delete file
-				File myObj = new File("./src/file/"+v);
+				File myObj = new File("./file"+v);
 				
 				if (! Notecontrol.fileIsOpen(v)) {
 					if (myObj.delete()) { 
@@ -76,7 +76,7 @@ public class FileExplorerontrol implements ActionListener{
 				//create new file
 				//check if file don't exist, in this case create it
 				try {
-	   				File myObj = new File("./src/file/"+n);
+	   				File myObj = new File("./file"+n);
 			  	    if (myObj.createNewFile()) {
 			  	        System.out.println("File created: " + myObj.getName());
 			  	        JOptionPane.showMessageDialog(null, "File created: "+n);

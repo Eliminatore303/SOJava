@@ -53,7 +53,7 @@ public class FileExplorer extends JFrame implements WindowListener{
 		contentPane.add(comboBox);
 		
 		String[] files;
-	 	File f = new File("./src/file");
+	 	File f = new File("./file");
 	 	files = f.list();
 		for (int i = 0; i < files.length; i++) {
 			comboBox.addItem(new String(files[i]));
@@ -187,7 +187,7 @@ public class FileExplorer extends JFrame implements WindowListener{
 		textField_2.setText("");
 		comboBox.removeAllItems();
 		String[] files;
-	 	File f = new File("./src/file");
+	 	File f = new File("./file");
 	 	files = f.list();
 		for (int i = 0; i < files.length; i++) {
 			comboBox.addItem(new String(files[i]));
@@ -228,7 +228,7 @@ public class FileExplorer extends JFrame implements WindowListener{
 		//comboBox.setModel(new DefaultComboBoxModel (new String[] {""}));
 		comboBox.removeAllItems();
 		String[] files;
-	 	File f = new File("./src/file");
+	 	File f = new File("./file");
 	 	files = f.list();
 		for (int i = 0; i < files.length; i++) {
 			comboBox.addItem(new String(files[i]));
