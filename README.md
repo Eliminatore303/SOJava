@@ -3,14 +3,14 @@ Cose da fare:
 
 1) gestire eccezione/i riguardo apertura di un file con 2 istanze del Note; (Done)
 1.1) se file già aperto non faccio riaprire il file con nuova istanza; (Done)
-2) sistemazione immagini e file per il .jar
+2) sistemazione immagini e file per il .jar (Done)
 2.1) immagini devo essere visibili nel progetto una volta esportato (Done)
 2.2) impostare le immagini delle finestre quando il file viene esportato (Done)
-3) creazione della struttura del progetto (struttura di directory)
-4) ci deve essere la possibilità usare i file tramite la GUI anche se il progetto è compresso
+3) creazione della struttura del progetto (struttura di directory) (Done)
+4) ci deve essere la possibilità usare i file tramite la GUI anche se il progetto è compresso (Done)
 4.1) per apertura dei file, non caricare o aprire file eseguibili
-4.2) verranno solo aperti i file della cartella /File
-4.2.1)  modificare path dei file aperti da explorer e note
+4.2) verranno solo aperti i file della cartella /File (Done)
+4.2.1)  modificare path dei file aperti da explorer e note (Done)
 5) sistemazione di icona SO;
 6) ridimensionamento delle finestre;
 
