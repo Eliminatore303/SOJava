@@ -132,9 +132,10 @@ public class Notecontrol implements ActionListener{
     	   //se salva, salvo stato corrente ma continuo a far scrivere
            //se salva come, salvo sessione corrente, con un testo scelto dallo user
     	   txt=note.getTextArea().getText();
-    	   if (name.compareTo("Uknown")!=0) {
+    	   if (fileList.get(noteCount).compareTo(""+noteCount)!=0 && name.compareTo("Uknown")!=0) {
+    		   printFileList();
     		   try {
-        		   //scrittura su file e quindi salvataggio in file
+        		   //scrittura su file aperto e quindi salvataggio in file
         		    FileWriter writer = new FileWriter("./file"+name);
        				writer.write(txt);
        				writer.close();
