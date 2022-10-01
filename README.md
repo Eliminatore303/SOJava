@@ -12,6 +12,7 @@ Cose da fare:
 4.1.1)  modificare path dei file aperti da explorer e note (Done)
 5) sistemazione bug, quando salvo (save not save as..) senza aprire un file non permetterlo
 6) mettere come default per salvare un file tipo: default.txt
+7) sistemazione in calcolatrice di calcolo di numeri periodici es: 3/7
 5) sistemazione di icona SO;
 6) ridimensionamento delle finestre;
 
