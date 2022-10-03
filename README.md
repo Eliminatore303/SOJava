@@ -10,11 +10,10 @@ Cose da fare:
 4) ci deve essere la possibilità usare i file tramite la GUI anche se il progetto è compresso (Done)
 4.1) verranno solo aperti i file della cartella /File (Done)
 4.1.1)  modificare path dei file aperti da explorer e note (Done)
-5) sistemazione bug, quando salvo (save not save as..) senza aprire un file non permetterlo
-6) mettere come default per salvare un file tipo: default.txt
-7) sistemazione in calcolatrice di calcolo di numeri periodici es: 3/7
-5) sistemazione di icona SO;
-6) ridimensionamento delle finestre;
+5) sistemazione bug, quando salvo (save not save as..) senza aprire un file non permetterlo (Done)
+6) sistemazione in calcolatrice di calcolo di numeri periodici es: 3/7
+7) sistemazione di icona SO;
+8) ridimensionamento delle finestre;
 
 In futuro:
 

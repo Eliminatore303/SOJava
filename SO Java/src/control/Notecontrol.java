@@ -244,7 +244,7 @@ public class Notecontrol implements ActionListener{
     	   String input = JOptionPane.showInputDialog("Save file as:");
     	   saveN=input;
     	   if (! fileIsOpen(saveN) || ( fileIsOpen(saveN) && saveN.compareTo(name)==0)) {
-    		   if (saveN==null && name.compareTo("Uknown")!=0) {
+    		   if (saveN==null && (name.compareTo("Uknown")!=0 || fileList.get(noteCount).compareTo(""+noteCount)!=0)) {
     	    		 //salvo in file già aperto
     	    		 //ho un file aperto
     				 //altrimenti non ho file aperto
@@ -253,55 +253,48 @@ public class Notecontrol implements ActionListener{
     	        	   note.setTitle(name+" - NotePad");
     	        	   setFileListName(name);
     	        	   txt=note.getTextArea().getText();
-    	        	   if (! txt.isBlank()) {
-    	        		   try {
-    	    	   				File myObj = new File("./file/"+name);
-    	    			  	    if (myObj.createNewFile()) {
-    	    			  	        FileWriter writer;
-    	    		   				writer = new FileWriter("./file/"+name);
-    	    		   				writer.write(txt);
-    	    		   				writer.close();
-    	    			  	    } else {
-    	    			  	    	JOptionPane.showMessageDialog(null, "The file will be overwrite!");
-    	    			  	        FileWriter writer;
-    	    		   				writer = new FileWriter("./file/"+name);
-    	    		   				writer.write(txt);
-    	    		   				writer.close();
-    	    			  	    }
-    	    	   			} catch (IOException e1) {
-    	    	   				e1.printStackTrace();
-    	    	   			}
-    	        	   }
+    	        	   try {
+	    	   				File myObj = new File("./file/"+name);
+	    			  	    if (myObj.createNewFile()) {
+	    			  	        FileWriter writer;
+	    		   				writer = new FileWriter("./file/"+name);
+	    		   				writer.write(txt);
+	    		   				writer.close();
+	    			  	    } else {
+	    			  	    	JOptionPane.showMessageDialog(null, "The file will be overwrite!");
+	    			  	        FileWriter writer;
+	    		   				writer = new FileWriter("./file/"+name);
+	    		   				writer.write(txt);
+	    		   				writer.close();
+	    			  	    }
+	    	   			} catch (IOException e1) {
+	    	   				e1.printStackTrace();
+	    	   			}
     	    	   }else {
     				 //ho inserito testo nella input e quindi salvo nel file richiesto
-    	    		   if (! saveN.isBlank()) {
-    	        		   note.getComboBox().setSelectedIndex(0);
-    	            	   note.getComboBox_1().setSelectedIndex(0);
-    	            	   note.setTitle(saveN+" - NotePad");
-    	            	   setFileListName(saveN);
-    	            	   txt=note.getTextArea().getText();
-    	            	   if (! txt.isBlank()) {
-    	            		   try {
-    	        	   				File myObj = new File("./file/"+saveN);
-    	        			  	    if (myObj.createNewFile()) {
-    	        			  	        FileWriter writer;
-    	        		   				writer = new FileWriter("./file/"+saveN);
-    	        		   				writer.write(txt);
-    	        		   				writer.close();
-    	        			  	    } else {
-    	        			  	    	JOptionPane.showMessageDialog(null, "The file will be overwrite!");
-    	        			  	        FileWriter writer;
-    	        		   				writer = new FileWriter("./file/"+saveN);
-    	        		   				writer.write(txt);
-    	        		   				writer.close();
-    	        			  	    }
-    	        	   			} catch (IOException e1) {
-    	        	   				e1.printStackTrace();
-    	        	   			}
-    	            	   }
-    	            	   name=saveN; 
-    	    		   }
-    	    	   
+	        		   note.getComboBox().setSelectedIndex(0);
+	            	   note.getComboBox_1().setSelectedIndex(0);
+	            	   note.setTitle(saveN+" - NotePad");
+	            	   setFileListName(saveN);
+	            	   txt=note.getTextArea().getText();
+	            	   try {
+       	   				File myObj = new File("./file/"+saveN);
+       			  	    if (myObj.createNewFile()) {
+       			  	        FileWriter writer;
+       		   				writer = new FileWriter("./file/"+saveN);
+       		   				writer.write(txt);
+       		   				writer.close();
+       			  	    } else {
+       			  	    	JOptionPane.showMessageDialog(null, "The file will be overwrite!");
+       			  	        FileWriter writer;
+       		   				writer = new FileWriter("./file/"+saveN);
+       		   				writer.write(txt);
+       		   				writer.close();
+       			  	    }
+       	   			} catch (IOException e1) {
+       	   				e1.printStackTrace();
+       	   			}
+	            	   name=saveN; 
     	    	   }
     	   }else {
     		   //the user is trying to save in a file that is already open 
