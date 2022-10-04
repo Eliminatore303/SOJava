@@ -3,6 +3,7 @@ package control;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.math.BigDecimal;
+import java.math.RoundingMode;
 
 import javax.swing.JButton;
 
@@ -98,7 +99,7 @@ public class Calcontrol implements ActionListener{
 								break;
 							case "/":
 								try {
-									calc.getTextFieldW().setText(""+x.divide(y));
+									calc.getTextFieldW().setText(""+x.divide(y, 8, RoundingMode.CEILING));
 								} catch (ArithmeticException ex) {
 									calc.getTextFieldW().setText(ex.getMessage());
 								}
