@@ -12,11 +12,16 @@ import view.Window;
 public class SOcontrol implements ActionListener{
 	private Window fin;
 	private Clock clock;
+	private FileExplorerontrol fileEC;
+	private FileExplorer fileE;
 	private static int count=0;
 	
 	public SOcontrol(Window fin, Clock clock) {
 		this.fin=fin;
 		this.clock=clock;
+		fileE = new FileExplorer();
+		fileEC = new FileExplorerontrol(fileE);
+		fileE.setVisible(false);
 		fin.getBtnNewButton().addActionListener(this);
 		fin.getBtnNewButton_1().addActionListener(this);
 		fin.getBtnNewButton_2().addActionListener(this);
@@ -38,7 +43,7 @@ public class SOcontrol implements ActionListener{
 			clock.setVisible(true);
 		}
 		if (e.getSource()==fin.getBtnNewButton_3()) {
-			new FileExplorerontrol(new FileExplorer());
+			fileE.setVisible(true);
 		}
 	}
 }
