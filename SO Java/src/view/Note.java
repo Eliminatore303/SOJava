@@ -7,44 +7,39 @@ import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
 import control.Notecontrol;
-
-import javax.swing.JToolBar;
-import javax.swing.JComboBox;
-import javax.swing.DefaultComboBoxModel;
 import javax.swing.ImageIcon;
-
-import java.awt.FlowLayout;
-import javax.swing.JLabel;
 import java.awt.Font;
 import java.awt.Image;
 import java.awt.event.WindowEvent;
 import java.awt.event.WindowListener;
 
-import javax.swing.SwingConstants;
 import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
+import javax.swing.JMenuBar;
+import javax.swing.JMenu;
+import javax.swing.JMenuItem;
 
 public class Note extends JFrame implements WindowListener{
 
 	private static final long serialVersionUID = 1L;
 	private JPanel contentPane;
-	private JPanel panel;
-	private JToolBar toolBar;
-	private JToolBar toolBar_1;
 	private JPanel panel_1;
-	private JPanel panel_2;
-	private JPanel panel_3;
-	private JLabel lblNewLabel;
-	private JLabel lblNewLabel_3;
-	private JComboBox comboBox;
-	private JComboBox comboBox_1;
-	private JLabel lblNewLabel_1;
 	private JScrollPane scrollPane;
 	private JTextArea textArea;
 	private String name;
 	private int key;
 	private Image image;
 	private ImageIcon icon;
+	private JMenuBar menuBar;
+	private JMenu mnNewMenu;
+	private JMenu mnNewMenu_1;
+	private JMenuItem mntmNewMenuItem_7;
+	private JMenuItem mntmNewMenuItem_1;
+	private JMenuItem mntmNewMenuItem_2;
+	private JMenuItem mntmNewMenuItem_3;
+	private JMenuItem mntmNewMenuItem_4;
+	private JMenuItem mntmNewMenuItem_5;
+	private JMenuItem mntmNewMenuItem_6;
 
 	public Note() {
 		name="Uknown";
@@ -61,45 +56,6 @@ public class Note extends JFrame implements WindowListener{
 		setVisible(true);
 		setResizable(false);
 		
-		panel = new JPanel();
-		contentPane.add(panel, BorderLayout.NORTH);
-		panel.setLayout(new BorderLayout(0, 0));
-		
-		toolBar = new JToolBar();
-		panel.add(toolBar, BorderLayout.CENTER);
-		
-		panel_2 = new JPanel();
-		FlowLayout flowLayout = (FlowLayout) panel_2.getLayout();
-		flowLayout.setAlignment(FlowLayout.LEFT);
-		toolBar.add(panel_2);
-		
-		lblNewLabel = new JLabel("File");
-		panel_2.add(lblNewLabel);
-		
-		lblNewLabel_1 = new JLabel("                        ");
-		panel_2.add(lblNewLabel_1);
-		
-		lblNewLabel_3 = new JLabel("Option");
-		lblNewLabel_3.setHorizontalAlignment(SwingConstants.LEFT);
-		lblNewLabel_3.setFont(new Font("Tahoma", Font.PLAIN, 11));
-		panel_2.add(lblNewLabel_3);
-		
-		toolBar_1 = new JToolBar();
-		panel.add(toolBar_1, BorderLayout.SOUTH);
-		
-		panel_3 = new JPanel();
-		FlowLayout flowLayout_1 = (FlowLayout) panel_3.getLayout();
-		flowLayout_1.setAlignment(FlowLayout.LEFT);
-		toolBar_1.add(panel_3);
-		
-		comboBox = new JComboBox();
-		comboBox.setModel(new DefaultComboBoxModel(new String[] {"","New", "Open", "Save", "Save as...", "Exit"}));
-		panel_3.add(comboBox);
-		
-		comboBox_1 = new JComboBox();
-		comboBox_1.setModel(new DefaultComboBoxModel(new String[] {"","Char width", "Date"}));
-		panel_3.add(comboBox_1);
-		
 		panel_1 = new JPanel();
 		contentPane.add(panel_1, BorderLayout.CENTER);
 		panel_1.setLayout(new BorderLayout(0, 0));
@@ -110,6 +66,38 @@ public class Note extends JFrame implements WindowListener{
 		textArea = new JTextArea();
 		textArea.setFont(new Font("Monospaced", Font.PLAIN, 13));
 		scrollPane.setViewportView(textArea);
+		
+		menuBar = new JMenuBar();
+		contentPane.add(menuBar, BorderLayout.NORTH);
+		
+		mnNewMenu = new JMenu("File");
+		mnNewMenu.setMnemonic('f');
+		menuBar.add(mnNewMenu);
+		
+		mntmNewMenuItem_1 = new JMenuItem("New");
+		mnNewMenu.add(mntmNewMenuItem_1);
+		
+		mntmNewMenuItem_2 = new JMenuItem("Open");
+		mnNewMenu.add(mntmNewMenuItem_2);
+		
+		mntmNewMenuItem_3 = new JMenuItem("Save");
+		mnNewMenu.add(mntmNewMenuItem_3);
+		
+		mntmNewMenuItem_4 = new JMenuItem("Save as...");
+		mnNewMenu.add(mntmNewMenuItem_4);
+		
+		mntmNewMenuItem_5 = new JMenuItem("Exit");
+		mnNewMenu.add(mntmNewMenuItem_5);
+		
+		mnNewMenu_1 = new JMenu("Option");
+		mnNewMenu_1.setMnemonic('o');
+		menuBar.add(mnNewMenu_1);
+		
+		mntmNewMenuItem_6 = new JMenuItem("Char width");
+		mnNewMenu_1.add(mntmNewMenuItem_6);
+		
+		mntmNewMenuItem_7 = new JMenuItem("Date");
+		mnNewMenu_1.add(mntmNewMenuItem_7);
 		
 	}
 	public void setName(String s) {
@@ -122,22 +110,6 @@ public class Note extends JFrame implements WindowListener{
 		return name;
 	}
 
-	public JComboBox getComboBox() {
-		return comboBox;
-	}
-
-	public void setComboBox(JComboBox comboBox) {
-		this.comboBox = comboBox;
-	}
-
-	public JComboBox getComboBox_1() {
-		return comboBox_1;
-	}
-
-	public void setComboBox_1(JComboBox comboBox_1) {
-		this.comboBox_1 = comboBox_1;
-	}
-
 	public JTextArea getTextArea() {
 		return textArea;
 	}
@@ -145,8 +117,62 @@ public class Note extends JFrame implements WindowListener{
 	public void setTextArea(JTextArea textArea) {
 		this.textArea = textArea;
 	}
-
 	
+	public JMenuItem getMntmNewMenuItem_7() {
+		return mntmNewMenuItem_7;
+	}
+	
+	public void setMntmNewMenuItem_7(JMenuItem mntmNewMenuItem_7) {
+		this.mntmNewMenuItem_7 = mntmNewMenuItem_7;
+	}
+	
+	public JMenuItem getMntmNewMenuItem_1() {
+		return mntmNewMenuItem_1;
+	}
+	
+	public void setMntmNewMenuItem_1(JMenuItem mntmNewMenuItem_1) {
+		this.mntmNewMenuItem_1 = mntmNewMenuItem_1;
+	}
+	
+	public JMenuItem getMntmNewMenuItem_2() {
+		return mntmNewMenuItem_2;
+	}
+	
+	public void setMntmNewMenuItem_2(JMenuItem mntmNewMenuItem_2) {
+		this.mntmNewMenuItem_2 = mntmNewMenuItem_2;
+	}
+	
+	public JMenuItem getMntmNewMenuItem_3() {
+		return mntmNewMenuItem_3;
+	}
+	
+	public void setMntmNewMenuItem_3(JMenuItem mntmNewMenuItem_3) {
+		this.mntmNewMenuItem_3 = mntmNewMenuItem_3;
+	}
+	
+	public JMenuItem getMntmNewMenuItem_4() {
+		return mntmNewMenuItem_4;
+	}
+	
+	public void setMntmNewMenuItem_4(JMenuItem mntmNewMenuItem_4) {
+		this.mntmNewMenuItem_4 = mntmNewMenuItem_4;
+	}
+	
+	public JMenuItem getMntmNewMenuItem_5() {
+		return mntmNewMenuItem_5;
+	}
+	
+	public void setMntmNewMenuItem_5(JMenuItem mntmNewMenuItem_5) {
+		this.mntmNewMenuItem_5 = mntmNewMenuItem_5;
+	}
+	
+	public JMenuItem getMntmNewMenuItem_6() {
+		return mntmNewMenuItem_6;
+	}
+	
+	public void setMntmNewMenuItem_6(JMenuItem mntmNewMenuItem_6) {
+		this.mntmNewMenuItem_6 = mntmNewMenuItem_6;
+	}
 	
 	@Override
 	public void windowOpened(WindowEvent e) {
@@ -157,12 +183,8 @@ public class Note extends JFrame implements WindowListener{
 	@Override
 	public void windowClosing(WindowEvent e) {
 		//chiusura finestra, impostazione combobox a stato originale(-1), pulizia textArea, eliminazione nome attuale
-		comboBox.setSelectedIndex(0);
-		comboBox_1.setSelectedIndex(0);
 		textArea.setText("");
 		Notecontrol.setFileOpenNo(key);
-		//n=new Notecontrol(this);
-		//n.setNameEmpty();
 	}
 
 	@Override

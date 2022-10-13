@@ -26,8 +26,8 @@ In futuro:
 6) finire di sitemare l'orologio integrandolo nella finestra principale;
 7) inserire calendario;
 8) inserire possibile modifica di data/ora;
-9) inserire personalizzazione di icone e immagini;
 
 Opzioni per eventi: KeyListener
-Menu per scegliere opzioni del note: JMenuBar + JMenuItem (Con aggiunta di scelta rapida)
+Menu per scegliere opzioni del note: JMenuBar + JMenuItem (Con aggiunta di scelta rapida) (Done)
 FileChooser per navigare nel file sistem (apertura file)
+

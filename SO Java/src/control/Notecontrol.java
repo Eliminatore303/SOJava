@@ -13,6 +13,7 @@ import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JDialog;
 import javax.swing.JOptionPane;
+import javax.swing.JMenuItem;
 import view.Note;
 
 public class Notecontrol implements ActionListener{
@@ -31,8 +32,13 @@ public class Notecontrol implements ActionListener{
 	
 	public Notecontrol(Note note) {
 		this.note=note;
-		note.getComboBox().addActionListener(this);
-		note.getComboBox_1().addActionListener(this);
+		note.getMntmNewMenuItem_1().addActionListener(this);
+		note.getMntmNewMenuItem_2().addActionListener(this);
+		note.getMntmNewMenuItem_3().addActionListener(this);
+		note.getMntmNewMenuItem_4().addActionListener(this);
+		note.getMntmNewMenuItem_5().addActionListener(this);
+		note.getMntmNewMenuItem_6().addActionListener(this);
+		note.getMntmNewMenuItem_7().addActionListener(this);
 		name=note.getName();
 		noteCount=count;
 		count++;
@@ -42,8 +48,8 @@ public class Notecontrol implements ActionListener{
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		String txt="";
-		JComboBox comboBox = (JComboBox) e.getSource();
-        String o = ""+comboBox.getSelectedItem();
+		JMenuItem  menuItem= (JMenuItem) e.getSource();
+        String o = ""+menuItem.getText();
        if (o.compareTo("Date")==0) {
     	   java.util.Date date = new java.util.Date();    
     	   txt=note.getTextArea().getText();
@@ -121,8 +127,6 @@ public class Notecontrol implements ActionListener{
    		}
    		note.getTextArea().setText("");
    		note.setVisible(false);
-   		note.getComboBox().setSelectedIndex(0);
-   		note.getComboBox_1().setSelectedIndex(0);
    		note.setTitle("Uknown - NotePad");
    		setFileListName("Uknown");
    		name="Uknown";
@@ -154,8 +158,6 @@ public class Notecontrol implements ActionListener{
     		   note.getTextArea().setText("");
         	   note.setVisible(false);
         	   note.setVisible(true);
-        	   note.getComboBox().setSelectedIndex(0);
-        	   note.getComboBox_1().setSelectedIndex(0);
         	   note.setTitle(name+" - NotePad");
         	   setFileListName(name);
     	   }
@@ -232,8 +234,6 @@ public class Notecontrol implements ActionListener{
 		note.getTextArea().setText("");
 		note.setVisible(false);
 		note.setVisible(true);
-		note.getComboBox().setSelectedIndex(0);
-		note.getComboBox_1().setSelectedIndex(0);
 		note.setTitle("Uknown - NotePad");
 		setFileListName("Uknown");
 		name="Uknown";
@@ -248,8 +248,6 @@ public class Notecontrol implements ActionListener{
     	    		 //salvo in file già aperto
     	    		 //ho un file aperto
     				 //altrimenti non ho file aperto
-    	    		   note.getComboBox().setSelectedIndex(0);
-    	        	   note.getComboBox_1().setSelectedIndex(0);
     	        	   note.setTitle(name+" - NotePad");
     	        	   setFileListName(name);
     	        	   txt=note.getTextArea().getText();
@@ -272,8 +270,6 @@ public class Notecontrol implements ActionListener{
 	    	   			}
     	    	   }else {
     				 //ho inserito testo nella input e quindi salvo nel file richiesto
-	        		   note.getComboBox().setSelectedIndex(0);
-	            	   note.getComboBox_1().setSelectedIndex(0);
 	            	   note.setTitle(saveN+" - NotePad");
 	            	   setFileListName(saveN);
 	            	   txt=note.getTextArea().getText();
