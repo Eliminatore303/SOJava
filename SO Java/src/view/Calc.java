@@ -26,15 +26,6 @@ public class Calc extends JFrame implements WindowListener{
 	private JTextField textFieldS;
 	
 	private JPanel panel;
-	private JPanel panel_1;
-	private JPanel panel_2;
-	private JPanel panel_3;
-	private JPanel panel_4;
-	private JButton button7;
-	private JButton button8;
-	private JButton button9;
-	private JButton buttonPlus;
-	private JButton button4;
 	private JButton button5;
 	private JButton button6;
 	private JButton buttonMinus;
@@ -47,11 +38,15 @@ public class Calc extends JFrame implements WindowListener{
 	private JButton buttonResult;
 	private JButton buttonDiv;
 	private JPanel panel_5;
-	private JPanel panel_6;
-	private JButton buttonCanc;
 	private JPanel panel_7;
 	private Image image;
 	private ImageIcon icon;
+	private JButton button4;
+	private JButton button7;
+	private JButton buttonPlus;
+	private JButton button9;
+	private JButton button8;
+	private JButton buttonCanc;
 	
 	public Calc() {
 		icon= new ImageIcon(getClass().getClassLoader().getResource("calc.png"));
@@ -61,7 +56,7 @@ public class Calc extends JFrame implements WindowListener{
 		setTitle("Calcolatrice");
 		//setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		addWindowListener(this);
-		setBounds(100, 100, 374, 297);
+		setBounds(100, 100, 364, 270);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
@@ -74,82 +69,73 @@ public class Calc extends JFrame implements WindowListener{
 		contentPane.add(panel, BorderLayout.CENTER);
 		panel.setLayout(null);
 		
-		panel_6 = new JPanel();
-		panel_6.setBackground(Color.LIGHT_GRAY);
-		panel_6.setBounds(10, 5, 67, 33);
-		panel.add(panel_6);
-		
-		buttonCanc = new JButton("Canc");
-		panel_6.add(buttonCanc);
-		
-		panel_1 = new JPanel();
-		panel_1.setBackground(Color.LIGHT_GRAY);
-		panel_1.setBounds(87, 5, 190, 33);
-		panel.add(panel_1);
-		
 		button7 = new JButton("7");
-		panel_1.add(button7);
-		
-		button8 = new JButton("8");
-		panel_1.add(button8);
-		
-		button9 = new JButton("9");
-		panel_1.add(button9);
+		button7.setBounds(87, 5, 45, 23);
+		panel.add(button7);
 		
 		buttonPlus = new JButton("+");
-		panel_1.add(buttonPlus);
+		buttonPlus.setBounds(237, 5, 45, 23);
+		panel.add(buttonPlus);
 		
-		panel_2 = new JPanel();
-		panel_2.setBackground(Color.LIGHT_GRAY);
-		panel_2.setBounds(87, 43, 190, 33);
-		panel.add(panel_2);
+		button9 = new JButton("9");
+		button9.setBounds(187, 5, 45, 23);
+		panel.add(button9);
+		
+		button8 = new JButton("8");
+		button8.setBounds(137, 5, 45, 23);
+		panel.add(button8);
+		
+		buttonCanc = new JButton("Canc");
+		buttonCanc.setBounds(15, 5, 65, 23);
+		panel.add(buttonCanc);
 		
 		button4 = new JButton("4");
-		panel_2.add(button4);
+		button4.setBounds(87, 39, 45, 23);
+		panel.add(button4);
 		
 		button5 = new JButton("5");
-		panel_2.add(button5);
+		button5.setBounds(137, 39, 45, 23);
+		panel.add(button5);
 		
 		button6 = new JButton("6");
-		panel_2.add(button6);
+		button6.setBounds(187, 39, 45, 23);
+		panel.add(button6);
 		
 		buttonMinus = new JButton("-");
-		panel_2.add(buttonMinus);
-		
-		panel_3 = new JPanel();
-		panel_3.setBackground(Color.LIGHT_GRAY);
-		panel_3.setBounds(87, 81, 190, 33);
-		panel.add(panel_3);
+		buttonMinus.setBounds(237, 39, 45, 23);
+		panel.add(buttonMinus);
 		
 		button1 = new JButton("1");
-		panel_3.add(button1);
+		button1.setBounds(87, 72, 45, 23);
+		panel.add(button1);
 		
 		button2 = new JButton("2");
-		panel_3.add(button2);
+		button2.setBounds(137, 72, 45, 23);
+		panel.add(button2);
 		
 		button3 = new JButton("3");
-		panel_3.add(button3);
+		button3.setBounds(187, 72, 45, 23);
+		panel.add(button3);
 		
 		buttonMulti = new JButton("*");
-		panel_3.add(buttonMulti);
-		
-		panel_4 = new JPanel();
-		panel_4.setBackground(Color.LIGHT_GRAY);
-		panel_4.setBounds(87, 119, 190, 33);
-		panel.add(panel_4);
+		buttonMulti.setBounds(237, 72, 45, 23);
+		panel.add(buttonMulti);
 		
 		buttonDec = new JButton(".");
+		buttonDec.setBounds(87, 106, 45, 23);
+		panel.add(buttonDec);
 		
 		button0 = new JButton("0");
+		button0.setBounds(137, 106, 45, 23);
+		panel.add(button0);
 		
 		buttonResult = new JButton("=");
+		buttonResult.setBounds(187, 106, 45, 23);
+		panel.add(buttonResult);
 		
 		buttonDiv = new JButton("/");
-		panel_4.setLayout(new FlowLayout(FlowLayout.CENTER, 5, 5));
-		panel_4.add(buttonDec);
-		panel_4.add(button0);
-		panel_4.add(buttonResult);
-		panel_4.add(buttonDiv);
+		buttonDiv.setBounds(237, 106, 45, 23);
+		panel.add(buttonDiv);
 		
 		panel_5 = new JPanel();
 		contentPane.add(panel_5, BorderLayout.NORTH);
@@ -382,5 +368,4 @@ public class Calc extends JFrame implements WindowListener{
 		// TODO Auto-generated method stub
 		
 	}
-	
 }
