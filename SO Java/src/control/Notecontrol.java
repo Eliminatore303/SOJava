@@ -12,12 +12,14 @@ import javax.swing.DefaultComboBoxModel;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JDialog;
+import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
 import javax.swing.JMenuItem;
 import view.Note;
 
 public class Notecontrol implements ActionListener{
 	private Note note;
+	private String txt;
 	private String name="";
 	private String saveN="";
 	//get the file i will open
@@ -29,6 +31,10 @@ public class Notecontrol implements ActionListener{
 	//the variable is static so that every time one Note is created it will be add to the list
 	//this variabile is necessary to save the current state of the file and know all the opened file
 	private static ArrayList<String> fileList =new ArrayList<String>();
+	//it is necessary this variables to choose the file
+	private JFileChooser fileChooser;
+	private String userDir;
+	private File selectedFile;
 	
 	public Notecontrol(Note note) {
 		this.note=note;
@@ -47,7 +53,7 @@ public class Notecontrol implements ActionListener{
 	
 	@Override
 	public void actionPerformed(ActionEvent e) {
-		String txt="";
+		txt="";
 		JMenuItem  menuItem= (JMenuItem) e.getSource();
         String o = ""+menuItem.getText();
        if (o.compareTo("Date")==0) {
@@ -365,5 +371,29 @@ public class Notecontrol implements ActionListener{
 	}
 	private void setFileListName(String s) {
 		fileList.set(noteCount, s);
+	}
+	private void getFile() {
+		userDir = System.getProperty("user.home");
+		fileChooser = new JFileChooser(userDir +"/Desktop");
+		int result = fileChooser.showOpenDialog(fileChooser);
+		if (result == JFileChooser.APPROVE_OPTION) {
+			selectedFile = fileChooser.getSelectedFile();
+			//selectedFile will replace the variable that save the file
+		}
+	}
+	private void writeOnFile(String s) {
+    	txt=note.getTextArea().getText();
+    	FileWriter writer;
+		try {
+			writer = new FileWriter(selectedFile);
+			writer.write(txt);
+			writer.close();
+		} catch (IOException e1) {
+			e1.printStackTrace();
+		}
+	}
+	private String readFile() {
+		String s="";
+		return s;
 	}
 }
