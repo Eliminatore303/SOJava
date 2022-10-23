@@ -21,7 +21,7 @@ In futuro:
 2) inserire "a capo automatico" nel Note come opzione;
 3) poter gestire i vari file anche in cartelle esterne al progetto;
 4) sistemazione del ridimensionamento delle finestre (autoridimensionamento oggetti nelle finestre);
-5) inserire altre calcolatrici (unità di misura comprese comprese);
+5) inserire altre calcolatrici (unità di misura comprese);
 5.1) scegliere il tipo di calolatrice (unità di misure comprese);
 6) finire di sitemare l'orologio integrandolo nella finestra principale;
 7) inserire calendario;

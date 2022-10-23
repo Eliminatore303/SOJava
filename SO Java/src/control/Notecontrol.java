@@ -378,6 +378,7 @@ public class Notecontrol implements ActionListener{
 		int result = fileChooser.showOpenDialog(fileChooser);
 		if (result == JFileChooser.APPROVE_OPTION) {
 			selectedFile = fileChooser.getSelectedFile();
+			//fileChooser.getn
 			//selectedFile will replace the variable that save the file
 		}
 	}

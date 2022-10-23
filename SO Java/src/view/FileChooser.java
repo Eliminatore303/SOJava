@@ -23,6 +23,7 @@ public class FileChooser extends JFrame {
 	private JFileChooser fileChooser;
 	private String userDir;
 	private File selectedFile;
+	private String tempFile;
 
 	/**
 	 * Launch the application.
@@ -62,7 +63,10 @@ public class FileChooser extends JFrame {
 				int result = fileChooser.showOpenDialog(fileChooser);
 				if (result == JFileChooser.APPROVE_OPTION) {
 					selectedFile = fileChooser.getSelectedFile();
-					textArea.setText(""+selectedFile);
+					tempFile= ""+fileChooser.getSelectedFile();
+					//textArea.setText(""+tempFile);
+					tempFile = fileChooser.getName(selectedFile);
+					textArea.setText(""+tempFile);
 				}
 			}
 		});
