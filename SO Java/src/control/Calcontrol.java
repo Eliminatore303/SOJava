@@ -6,6 +6,7 @@ import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import java.math.BigDecimal;
 import java.math.RoundingMode;
+import java.util.ArrayList;
 
 import javax.swing.JButton;
 
@@ -17,9 +18,22 @@ public class Calcontrol implements ActionListener,KeyListener{
 	private int key;
 	private String ks;
 	private KeyEvent ke;
+	private ArrayList<Integer> vn, vs;
+	//vn -> values of numbers of KeyListener
+	//vs -> values of special chars of KeyListener
+	
 	//try
 	public Calcontrol(Calc calc) {
 		this.calc=calc;
+		vn= new ArrayList<Integer>();
+		vn.add(48);vn.add(49);vn.add(50);vn.add(51);vn.add(52);
+		vn.add(53);vn.add(54);vn.add(55);vn.add(56);vn.add(57);
+		vn.add(96);vn.add(97);vn.add(98);vn.add(99);vn.add(100);
+		vn.add(101);vn.add(102);vn.add(103);vn.add(104);vn.add(105);
+		vs= new ArrayList<Integer>();
+		vs.add(45);vs.add(46);vs.add(106);vs.add(107);vs.add(109);
+		vs.add(110);vs.add(111);vs.add(127);vs.add(521);
+		System.out.println(vs);
 		calc.getButton0().addActionListener(this);
 		calc.getButton1().addActionListener(this);
 		calc.getButton2().addActionListener(this);
@@ -196,24 +210,27 @@ public class Calcontrol implements ActionListener,KeyListener{
 
 	@Override
 	public void keyPressed(KeyEvent e) {
+		System.out.println("hello");
 		String s= "", c="", p="";
+		int value;
 		s=calc.getTextFieldW().getText();
 		BigDecimal x,y;
 		//return the int value of the keypressed
 		//key = e.getKeyCode();
 		//return the char value of the keypressed
 		//key = e.getKeyChar();
-		/*
-		 * 
-		 * 
-		 * 
-		 */
-		if (e.getKeyCode()!=127) {
+		System.out.println(vn.contains(e.getKeyCode()));
+		if (vn.contains(e.getKeyCode()) || vs.contains(e.getKeyCode())) {
+			value=e.getKeyCode();
 			//canc: 127
-		}else {
-			calc.getTextFieldS().setText("");
-			calc.getTextFieldW().setText("0");
-			lastsign="";
+			if (e.getKeyCode()!=127) {
+				calc.getTextFieldW().setText(""+e.getKeyChar());
+				
+			}else {
+				calc.getTextFieldS().setText("");
+				calc.getTextFieldW().setText("0");
+				lastsign="";
+			}
 		}
 		
 		

@@ -1,21 +1,22 @@
 #Classes to update
 
 NotePad:
-1) sostituzione toolBar con JMenuBar (Done)
-2) nella JMenuBar vanno aggiunti 5 + 2 JMenuItem (Done)
-3) collegare eventi a JMenuItem (Done)
-4) nella apertura dei file, per scegliere il file si usa l'elemento FileChooser
+1) sostituzione toolBar con JMenuBar (Done);
+2) nella JMenuBar vanno aggiunti 5 + 2 JMenuItem (Done);
+3) collegare eventi a JMenuItem (Done);
+4) nella apertura dei file, per scegliere il file si usa l'elemento FileChooser;
 
 JMenuItem 1 -> File : "New", "Open", "Save", "Save as...", "Exit";
 JMenuItem 2 -> Option: "Char width", "Date";
 
 Calc:
-1) rinominare i bottoni in maniera corretta (Done)
-2) aggiungere evento KeyListener alla textFiled (Done)
-3) completare keyListenere alla textfiled
-4) aggiungere opzioni a calcolatrice
-4.1) backspace "<-"
-4.2) cambio sengo "+/-"
+1) rinominare i bottoni in maniera corretta (Done);
+2) aggiungere evento KeyListener alla textFiled (Done);
+3) completare keyListenere sulla textfiled;
+3.1) controllo di tasto premuto con funzione di cerca su ArrayList dei valori numerici;
+4) aggiungere opzioni a calcolatrice:
+4.1) backspace "<-";
+4.2) cambio sengo "+/-";
 
 Valori numerici KeyListener:
 Numerici:
@@ -26,5 +27,5 @@ Segni:
 canc -> 127; . -> 46,110;
 
 Clock:
-1) integrare orologio nella finestra principale (sistemazione di errore bloccante dell' orologio )
-1.1) integrare giorno-mese-anno assieme all' orologio
+1) integrare orologio nella finestra principale (sistemazione di errore bloccante dell' orologio );
+1.1) integrare giorno-mese-anno assieme all' orologio;
