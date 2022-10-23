@@ -9,7 +9,6 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 import javax.swing.ImageIcon;
-import javax.swing.JComboBox;
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JTextField;
@@ -18,9 +17,7 @@ public class FileExplorer extends JFrame implements WindowListener{
 
 	private static final long serialVersionUID = 1L;
 	private JPanel contentPane;
-	private JComboBox comboBox;
 	private JButton btnNewButton;
-	private JLabel lblNewLabel;
 	private JLabel lblNewLabel_1;
 	private JTextField textField;
 	private JButton btnNewButton_1;
@@ -48,24 +45,9 @@ public class FileExplorer extends JFrame implements WindowListener{
 		
 		addWindowListener(this);
 		
-		comboBox = new JComboBox();
-		comboBox.setBounds(96, 14, 150, 23);
-		contentPane.add(comboBox);
-		
-		String[] files;
-	 	File f = new File("./file/");
-	 	files = f.list();
-		for (int i = 0; i < files.length; i++) {
-			comboBox.addItem(new String(files[i]));
-		}
-		
-		btnNewButton = new JButton("Select file");
-		btnNewButton.setBounds(256, 14, 103, 23);
+		btnNewButton = new JButton("Choose File");
+		btnNewButton.setBounds(96, 13, 150, 23);
 		contentPane.add(btnNewButton);
-		
-		lblNewLabel = new JLabel("Choose file:");
-		lblNewLabel.setBounds(10, 14, 76, 23);
-		contentPane.add(lblNewLabel);
 		
 		lblNewLabel_1 = new JLabel("Open file:");
 		lblNewLabel_1.setBounds(10, 47, 76, 23);
@@ -107,14 +89,6 @@ public class FileExplorer extends JFrame implements WindowListener{
 		btnNewButton_3 = new JButton("Create file");
 		btnNewButton_3.setBounds(256, 113, 103, 23);
 		contentPane.add(btnNewButton_3);
-	}
-
-	public JComboBox getComboBox() {
-		return comboBox;
-	}
-
-	public void setComboBox(JComboBox comboBox) {
-		this.comboBox = comboBox;
 	}
 
 	public JButton getBtnNewButton() {
@@ -185,13 +159,6 @@ public class FileExplorer extends JFrame implements WindowListener{
 		textField.setText("");
 		textField_1.setText("");
 		textField_2.setText("");
-		comboBox.removeAllItems();
-		String[] files;
-	 	File f = new File("./file/");
-	 	files = f.list();
-		for (int i = 0; i < files.length; i++) {
-			comboBox.addItem(new String(files[i]));
-		}
 	}
 
 	@Override
@@ -226,13 +193,6 @@ public class FileExplorer extends JFrame implements WindowListener{
 	
 	public void refresh() {
 		//comboBox.setModel(new DefaultComboBoxModel (new String[] {""}));
-		comboBox.removeAllItems();
-		String[] files;
-	 	File f = new File("./file/");
-	 	files = f.list();
-		for (int i = 0; i < files.length; i++) {
-			comboBox.addItem(new String(files[i]));
-		}
 		textField.setText("");
 		textField_1.setText("");
 		textField_2.setText("");

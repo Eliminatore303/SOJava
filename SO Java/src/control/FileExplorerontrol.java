@@ -26,11 +26,7 @@ public class FileExplorerontrol implements ActionListener{
 	public void actionPerformed(ActionEvent e) {
 		//per resettare la finestra, usare fileE.refresh()
 		if (e.getSource()==fileE.getBtnNewButton()) {
-			s=""+fileE.getComboBox().getSelectedItem();
-			if (! s.isBlank()) {
-				fileE.getTextField().setText(s);
-				fileE.getTextField_1().setText(s);
-			}
+			//if button selected, open a fileChooser window
 		}
 		if (e.getSource()==fileE.getBtnNewButton_1()) {
 			t=""+fileE.getTextField().getText();
