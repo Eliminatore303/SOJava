@@ -2,6 +2,8 @@ package control;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.KeyEvent;
+import java.awt.event.KeyListener;
 import java.math.BigDecimal;
 import java.math.RoundingMode;
 
@@ -9,9 +11,12 @@ import javax.swing.JButton;
 
 import view.Calc;
 
-public class Calcontrol implements ActionListener{
+public class Calcontrol implements ActionListener,KeyListener{
 	private Calc calc;
 	private static String lastsign="";
+	private int key;
+	private String ks;
+	private KeyEvent ke;
 	//try
 	public Calcontrol(Calc calc) {
 		this.calc=calc;
@@ -34,6 +39,8 @@ public class Calcontrol implements ActionListener{
 		calc.getButtonResult().addActionListener(this);
 		
 		calc.getButtonCanc().addActionListener(this);
+		
+		calc.getTextFieldW().addKeyListener(this);
 	}
 
 	@Override
@@ -179,6 +186,43 @@ public class Calcontrol implements ActionListener{
 			calc.getTextFieldW().setText("0");
 			lastsign="";
 		}
+	}
+
+	@Override
+	public void keyTyped(KeyEvent e) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void keyPressed(KeyEvent e) {
+		String s= "", c="", p="";
+		s=calc.getTextFieldW().getText();
+		BigDecimal x,y;
+		//return the int value of the keypressed
+		//key = e.getKeyCode();
+		//return the char value of the keypressed
+		//key = e.getKeyChar();
+		/*
+		 * 
+		 * 
+		 * 
+		 */
+		if (e.getKeyCode()!=127) {
+			//canc: 127
+		}else {
+			calc.getTextFieldS().setText("");
+			calc.getTextFieldW().setText("0");
+			lastsign="";
+		}
+		
+		
+	}
+
+	@Override
+	public void keyReleased(KeyEvent e) {
+		// TODO Auto-generated method stub
+		
 	}
 		
 		

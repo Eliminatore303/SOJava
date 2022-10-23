@@ -10,8 +10,20 @@ JMenuItem 1 -> File : "New", "Open", "Save", "Save as...", "Exit";
 JMenuItem 2 -> Option: "Char width", "Date";
 
 Calc:
-1) rinominare i bottoni in maniera corretta
-2) aggiungere evento KeyListener ai bottoni
+1) rinominare i bottoni in maniera corretta (Done)
+2) aggiungere evento KeyListener alla textFiled (Done)
+3) completare keyListenere alla textfiled
+4) aggiungere opzioni a calcolatrice
+4.1) backspace "<-"
+4.2) cambio sengo "+/-"
+
+Valori numerici KeyListener:
+Numerici:
+0 -> 48, 96; 1 -> 49, 97; 2 -> 50, 98; 3 -> 51, 99; 4 -> 52, 100;
+5 -> 53, 101; 6 -> 54, 102; 7 -> 55, 103; 8 -> 56, 104; 9 -> 57, 105;
+Segni:
++ -> 521, 107; - -> 45, 409; * -> 106; / -> 111;
+canc -> 127; . -> 46,110;
 
 Clock:
 1) integrare orologio nella finestra principale (sistemazione di errore bloccante dell' orologio )
