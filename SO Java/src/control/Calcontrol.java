@@ -15,9 +15,6 @@ import view.Calc;
 public class Calcontrol implements ActionListener,KeyListener{
 	private Calc calc;
 	private static String lastsign="";
-	private int key;
-	private String ks;
-	private KeyEvent ke;
 	private ArrayList<Integer> vn, vs;
 	//vn -> values of numbers of KeyListener
 	//vs -> values of special chars of KeyListener
@@ -33,7 +30,6 @@ public class Calcontrol implements ActionListener,KeyListener{
 		vs= new ArrayList<Integer>();
 		vs.add(45);vs.add(46);vs.add(106);vs.add(107);vs.add(109);
 		vs.add(110);vs.add(111);vs.add(127);vs.add(521);
-		System.out.println(vs);
 		calc.getButton0().addActionListener(this);
 		calc.getButton1().addActionListener(this);
 		calc.getButton2().addActionListener(this);
@@ -210,9 +206,8 @@ public class Calcontrol implements ActionListener,KeyListener{
 
 	@Override
 	public void keyPressed(KeyEvent e) {
-		System.out.println("hello");
 		String s= "", c="", p="";
-		int value;
+		String valueKey="";
 		s=calc.getTextFieldW().getText();
 		BigDecimal x,y;
 		//return the int value of the keypressed
@@ -221,11 +216,140 @@ public class Calcontrol implements ActionListener,KeyListener{
 		//key = e.getKeyChar();
 		System.out.println(vn.contains(e.getKeyCode()));
 		if (vn.contains(e.getKeyCode()) || vs.contains(e.getKeyCode())) {
-			value=e.getKeyCode();
+			valueKey=""+e.getKeyChar();
 			//canc: 127
 			if (e.getKeyCode()!=127) {
 				calc.getTextFieldW().setText(""+e.getKeyChar());
-				
+				if (s.compareTo("Division by zero")==0 || s.compareTo("Division undefined")==0 ) {
+					calc.getTextFieldW().setText(""+valueKey);
+					calc.getTextFieldS().setText("");
+				}else {
+					if (valueKey.compareTo(".")!=0) {
+						try {
+							//numeri
+							Integer.parseInt(valueKey);
+							if (s.compareTo("0")!=0) {
+								if (lastsign.compareTo("=")==0) {
+									s=valueKey;
+									calc.getTextFieldW().setText(s);
+									calc.getTextFieldS().setText("");
+								}else {
+									s+=valueKey;
+									calc.getTextFieldW().setText(s);
+								}
+							}
+							if (s.compareTo("0")==0) {
+								s=valueKey;
+								calc.getTextFieldW().setText(s);
+							}
+							
+							
+						} catch (NumberFormatException e2) {
+							//simboli
+							
+							if (calc.getTextFieldS().getText().isEmpty() || lastsign.compareTo("=")==0) {
+								calc.getTextFieldS().setText(s+valueKey);
+								calc.getTextFieldW().setText("0");
+								lastsign=valueKey;
+							}else {
+								//calcolo risultato nella casella s
+								// s testo sotto, c testo sopra
+								calc.getTextFieldS().setText(calc.getTextFieldS().getText()+s+valueKey);
+								c=calc.getTextFieldS().getText();
+								p=c.substring(0, c.length()-s.length()-2);
+								x = new BigDecimal(p);
+								y = new BigDecimal(s);
+								
+								if (valueKey.compareTo("=")==0) {
+									switch (lastsign) {
+									case "+":
+										calc.getTextFieldW().setText(""+x.add(y));
+										break;
+									case "-":
+										//calc.getTextFieldW().setText("0");
+										calc.getTextFieldW().setText(""+x.subtract(y));
+										break;
+									case "*":
+										//calc.getTextFieldW().setText("0");
+										calc.getTextFieldW().setText(""+x.multiply(y));
+										break;
+									case "/":
+										try {
+											calc.getTextFieldW().setText(""+x.divide(y, 8, RoundingMode.CEILING));
+										} catch (ArithmeticException ex) {
+											calc.getTextFieldW().setText(ex.getMessage());
+										}
+										break;
+									}
+								}else {
+									switch (lastsign) {
+									case "+":
+										calc.getTextFieldS().setText(""+x.add(y)+valueKey);
+										calc.getTextFieldW().setText("0");
+										break;
+									case "-":
+										//calc.getTextFieldW().setText("0");
+										calc.getTextFieldS().setText(""+x.subtract(y)+valueKey);
+										calc.getTextFieldW().setText("0");
+										break;
+									case "*":
+										//calc.getTextFieldW().setText("0");
+										calc.getTextFieldS().setText(""+x.multiply(y)+valueKey);
+										calc.getTextFieldW().setText("0");
+										break;
+									case "/":
+										try {
+											calc.getTextFieldS().setText(""+x.divide(y)+valueKey);
+											calc.getTextFieldW().setText("0");
+										} catch (ArithmeticException ex) {
+											calc.getTextFieldW().setText(ex.getMessage());
+										}
+										break;
+									case "=":
+										switch (valueKey) {
+											case "+":
+												calc.getTextFieldS().setText(""+x.add(y)+valueKey);
+												calc.getTextFieldW().setText("0");
+												break;
+											case "-":
+												//calc.getTextFieldW().setText("0");
+												calc.getTextFieldS().setText(""+x.subtract(y)+valueKey);
+												calc.getTextFieldW().setText("0");
+												break;
+											case "*":
+												//calc.getTextFieldW().setText("0");
+												calc.getTextFieldS().setText(""+x.multiply(y)+valueKey);
+												calc.getTextFieldW().setText("0");
+												break;
+											case "/":
+												try {
+													calc.getTextFieldS().setText(""+x.divide(y)+valueKey);
+													calc.getTextFieldW().setText("0");
+												} catch (ArithmeticException ex) {
+													calc.getTextFieldW().setText(ex.getMessage());
+												}
+												break;
+										}
+										break;
+									}
+									
+								}
+								lastsign=valueKey;
+							}
+						}
+						}else {
+							//decimali
+							try {
+							
+								Integer.parseInt(s);
+								s+=valueKey;
+								calc.getTextFieldW().setText(s);
+							} catch (NumberFormatException e2) {
+								// TODO: handle exception
+							}
+						
+						}
+				}
 			}else {
 				calc.getTextFieldS().setText("");
 				calc.getTextFieldW().setText("0");

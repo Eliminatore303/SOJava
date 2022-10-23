@@ -12,12 +12,13 @@ JMenuItem 2 -> Option: "Char width", "Date";
 Calc:
 1) rinominare i bottoni in maniera corretta (Done);
 2) aggiungere evento KeyListener alla textFiled (Done);
-3) completare keyListenere sulla textfiled;
-3.1) controllo di tasto premuto con funzione di cerca su ArrayList dei valori numerici;
+3) completare keyListenere sulla textfiled (Done);
+3.1) controllo di tasto premuto con funzione di cerca su ArrayList dei valori numerici (Done);
 4) aggiungere opzioni a calcolatrice:
 4.1) backspace "<-";
 4.2) cambio sengo "+/-";
-5) sistemare errore dove bisogna selezionare la finestra per far funzionare i keyListener;
+5) sistemare errore dove bisogna selezionare la casella di test per far funzionare i keyListener;
+6) sistemare errore dove i valori dei tasti non corrispondono se si usa lo "shift";
 
 Valori numerici KeyListener:
 Numerici:
