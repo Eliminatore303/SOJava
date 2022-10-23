@@ -17,6 +17,7 @@ Calc:
 4) aggiungere opzioni a calcolatrice:
 4.1) backspace "<-";
 4.2) cambio sengo "+/-";
+5) sistemare errore dove bisogna selezionare la finestra per far funzionare i keyListener;
 
 Valori numerici KeyListener:
 Numerici:
