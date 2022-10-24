@@ -18,7 +18,7 @@ Calc:
 4.1) backspace "<-";
 4.2) cambio sengo "+/-";
 5) sistemare errore dove bisogna selezionare la casella di testo per far funzionare i keyListener;
-6) sistemare errore dove i valori dei tasti non corrispondono se si usa lo "shift";
+6) sistemare errore dove i valori dei tasti non corrispondono se si usa lo "shift" (Done);
 
 Valori numerici KeyListener:
 Numerici:

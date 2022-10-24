@@ -47,6 +47,7 @@ public class Calc extends JFrame implements WindowListener{
 	private JButton button9;
 	private JButton button8;
 	private JButton buttonCanc;
+	private JButton buttonSign;
 	
 	public Calc() {
 		icon= new ImageIcon(getClass().getClassLoader().getResource("calc.png"));
@@ -56,7 +57,7 @@ public class Calc extends JFrame implements WindowListener{
 		setTitle("Calcolatrice");
 		//setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		addWindowListener(this);
-		setBounds(100, 100, 364, 270);
+		setBounds(100, 100, 333, 269);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
@@ -70,72 +71,76 @@ public class Calc extends JFrame implements WindowListener{
 		panel.setLayout(null);
 		
 		button7 = new JButton("7");
-		button7.setBounds(87, 5, 45, 23);
+		button7.setBounds(10, 45, 63, 23);
 		panel.add(button7);
 		
 		buttonPlus = new JButton("+");
-		buttonPlus.setBounds(237, 5, 45, 23);
+		buttonPlus.setBounds(229, 113, 63, 23);
 		panel.add(buttonPlus);
 		
 		button9 = new JButton("9");
-		button9.setBounds(187, 5, 45, 23);
+		button9.setBounds(156, 45, 63, 23);
 		panel.add(button9);
 		
 		button8 = new JButton("8");
-		button8.setBounds(137, 5, 45, 23);
+		button8.setBounds(83, 45, 63, 23);
 		panel.add(button8);
 		
 		buttonCanc = new JButton("Canc");
-		buttonCanc.setBounds(15, 5, 65, 23);
+		buttonCanc.setBounds(10, 11, 63, 23);
 		panel.add(buttonCanc);
 		
 		button4 = new JButton("4");
-		button4.setBounds(87, 39, 45, 23);
+		button4.setBounds(10, 79, 63, 23);
 		panel.add(button4);
 		
 		button5 = new JButton("5");
-		button5.setBounds(137, 39, 45, 23);
+		button5.setBounds(83, 79, 63, 23);
 		panel.add(button5);
 		
 		button6 = new JButton("6");
-		button6.setBounds(187, 39, 45, 23);
+		button6.setBounds(156, 79, 63, 23);
 		panel.add(button6);
 		
 		buttonMinus = new JButton("-");
-		buttonMinus.setBounds(237, 39, 45, 23);
+		buttonMinus.setBounds(229, 79, 63, 23);
 		panel.add(buttonMinus);
 		
 		button1 = new JButton("1");
-		button1.setBounds(87, 72, 45, 23);
+		button1.setBounds(10, 113, 63, 23);
 		panel.add(button1);
 		
 		button2 = new JButton("2");
-		button2.setBounds(137, 72, 45, 23);
+		button2.setBounds(83, 113, 63, 23);
 		panel.add(button2);
 		
 		button3 = new JButton("3");
-		button3.setBounds(187, 72, 45, 23);
+		button3.setBounds(156, 113, 63, 23);
 		panel.add(button3);
 		
 		buttonMulti = new JButton("*");
-		buttonMulti.setBounds(237, 72, 45, 23);
+		buttonMulti.setBounds(229, 45, 63, 23);
 		panel.add(buttonMulti);
 		
 		buttonDec = new JButton(".");
-		buttonDec.setBounds(87, 106, 45, 23);
+		buttonDec.setBounds(156, 147, 63, 23);
 		panel.add(buttonDec);
 		
 		button0 = new JButton("0");
-		button0.setBounds(137, 106, 45, 23);
+		button0.setBounds(83, 147, 63, 23);
 		panel.add(button0);
 		
 		buttonResult = new JButton("=");
-		buttonResult.setBounds(187, 106, 45, 23);
+		buttonResult.setBounds(229, 147, 63, 23);
 		panel.add(buttonResult);
 		
 		buttonDiv = new JButton("/");
-		buttonDiv.setBounds(237, 106, 45, 23);
+		buttonDiv.setBounds(229, 11, 63, 23);
 		panel.add(buttonDiv);
+		
+		buttonSign = new JButton("+/-");
+		buttonSign.setBounds(10, 147, 63, 23);
+		panel.add(buttonSign);
 		
 		panel_5 = new JPanel();
 		contentPane.add(panel_5, BorderLayout.NORTH);
@@ -322,9 +327,13 @@ public class Calc extends JFrame implements WindowListener{
 		this.buttonDiv = buttonDiv;
 	}
 	
-	
-	
-	
+	public JButton getButtonSign() {
+		return buttonSign;
+	}
+
+	public void setButtonSign(JButton buttonSign) {
+		this.buttonSign = buttonSign;
+	}
 
 	@Override
 	public void windowOpened(WindowEvent e) {
