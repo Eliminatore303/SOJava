@@ -57,10 +57,10 @@ public class testKey extends JFrame {
 		textArea.setEditable(false);
 		textArea.addKeyListener(new KeyAdapter() {
 			public void keyPressed(KeyEvent e) {
-				key = e.getKeyCode();
-				
+				key = Integer.parseInt(""+e.getKeyChar());
+				//System.out.println(key);
 				s=textArea.getText();
-				textArea.setText(s+" "+e.getKeyChar()+": "+e.getKeyCode());
+				textArea.setText(s+" "+e.getKeyChar()+": "+e.getKeyCode()+"\n");
 				/*
 				 * result:
 				 * e.getKeyChar() -> the char written on the keyboard

@@ -21,7 +21,6 @@ public class SOcontrol implements ActionListener{
 		this.clock=clock;
 		fileE = new FileExplorer();
 		fileEC = new FileExplorerontrol(fileE);
-		fileE.setVisible(false);
 		fin.getBtnNewButton().addActionListener(this);
 		fin.getBtnNewButton_1().addActionListener(this);
 		fin.getBtnNewButton_2().addActionListener(this);

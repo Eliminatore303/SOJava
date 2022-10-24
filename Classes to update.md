@@ -17,16 +17,16 @@ Calc:
 4) aggiungere opzioni a calcolatrice:
 4.1) backspace "<-";
 4.2) cambio sengo "+/-";
-5) sistemare errore dove bisogna selezionare la casella di test per far funzionare i keyListener;
+5) sistemare errore dove bisogna selezionare la casella di testo per far funzionare i keyListener;
 6) sistemare errore dove i valori dei tasti non corrispondono se si usa lo "shift";
 
 Valori numerici KeyListener:
 Numerici:
-0 -> 48, 96; 1 -> 49, 97; 2 -> 50, 98; 3 -> 51, 99; 4 -> 52, 100;
-5 -> 53, 101; 6 -> 54, 102; 7 -> 55, 103; 8 -> 56, 104; 9 -> 57, 105;
+0 -> 96; 1 -> 97; 2 -> 98; 3 -> 99; 4 -> 100;
+5 -> 101; 6 -> 102; 7 -> 103; 8 -> 104; 9 -> 105;
 Segni:
-+ -> 521, 107; - -> 45, 409; * -> 106; / -> 111;
-canc -> 127; . -> 46,110;
++ -> 107; - -> 109; * -> 106; / -> 111;
+canc -> 127; . -> 110; invio -> 10;
 
 Clock:
 1) integrare orologio nella finestra principale (sistemazione di errore bloccante dell' orologio );

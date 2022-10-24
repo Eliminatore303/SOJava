@@ -38,7 +38,7 @@ public class FileExplorer extends JFrame implements WindowListener{
 		image = icon.getImage();
 		setIconImage(image);
 		contentPane = new JPanel();
-		setVisible(true);
+		setVisible(false);
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
 		contentPane.setLayout(null);

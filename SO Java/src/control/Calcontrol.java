@@ -23,13 +23,11 @@ public class Calcontrol implements ActionListener,KeyListener{
 	public Calcontrol(Calc calc) {
 		this.calc=calc;
 		vn= new ArrayList<Integer>();
-		vn.add(48);vn.add(49);vn.add(50);vn.add(51);vn.add(52);
-		vn.add(53);vn.add(54);vn.add(55);vn.add(56);vn.add(57);
 		vn.add(96);vn.add(97);vn.add(98);vn.add(99);vn.add(100);
 		vn.add(101);vn.add(102);vn.add(103);vn.add(104);vn.add(105);
 		vs= new ArrayList<Integer>();
-		vs.add(45);vs.add(46);vs.add(106);vs.add(107);vs.add(109);
-		vs.add(110);vs.add(111);vs.add(127);vs.add(521);
+		vs.add(106);vs.add(107);vs.add(109);
+		vs.add(110);vs.add(111);vs.add(127);vs.add(10);
 		calc.getButton0().addActionListener(this);
 		calc.getButton1().addActionListener(this);
 		calc.getButton2().addActionListener(this);
@@ -58,7 +56,6 @@ public class Calcontrol implements ActionListener,KeyListener{
 		String s= "", c="", p="";
 		s=calc.getTextFieldW().getText();
 		BigDecimal x,y;
-		
 		JButton button=(JButton) e.getSource();
 		if (button.getText().compareTo("Canc")!=0) {
 			if (s.compareTo("Division by zero")==0 || s.compareTo("Division undefined")==0 ) {
@@ -214,9 +211,12 @@ public class Calcontrol implements ActionListener,KeyListener{
 		//key = e.getKeyCode();
 		//return the char value of the keypressed
 		//key = e.getKeyChar();
-		System.out.println(vn.contains(e.getKeyCode()));
 		if (vn.contains(e.getKeyCode()) || vs.contains(e.getKeyCode())) {
-			valueKey=""+e.getKeyChar();
+			if (e.getKeyCode()==10) {
+				valueKey="=";
+			}else {
+				valueKey=""+e.getKeyChar();
+			}
 			//canc: 127
 			if (e.getKeyCode()!=127) {
 				calc.getTextFieldW().setText(""+e.getKeyChar());
