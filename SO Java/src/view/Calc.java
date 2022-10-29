@@ -38,7 +38,6 @@ public class Calc extends JFrame implements WindowListener{
 	private JButton buttonResult;
 	private JButton buttonDiv;
 	private JPanel panel_5;
-	private JPanel panel_7;
 	private Image image;
 	private ImageIcon icon;
 	private JButton button4;
@@ -46,8 +45,8 @@ public class Calc extends JFrame implements WindowListener{
 	private JButton buttonPlus;
 	private JButton button9;
 	private JButton button8;
-	private JButton buttonCanc;
 	private JButton buttonSign;
+	private JButton buttonCanc;
 	
 	public Calc() {
 		icon= new ImageIcon(getClass().getClassLoader().getResource("calc.png"));
@@ -85,10 +84,6 @@ public class Calc extends JFrame implements WindowListener{
 		button8 = new JButton("8");
 		button8.setBounds(83, 45, 63, 23);
 		panel.add(button8);
-		
-		buttonCanc = new JButton("Canc");
-		buttonCanc.setBounds(10, 11, 63, 23);
-		panel.add(buttonCanc);
 		
 		button4 = new JButton("4");
 		button4.setBounds(10, 79, 63, 23);
@@ -142,6 +137,10 @@ public class Calc extends JFrame implements WindowListener{
 		buttonSign.setBounds(10, 147, 63, 23);
 		panel.add(buttonSign);
 		
+		buttonCanc = new JButton("Canc");
+		buttonCanc.setBounds(10, 11, 63, 23);
+		panel.add(buttonCanc);
+		
 		panel_5 = new JPanel();
 		contentPane.add(panel_5, BorderLayout.NORTH);
 		panel_5.setLayout(new BorderLayout(0, 0));
@@ -160,10 +159,6 @@ public class Calc extends JFrame implements WindowListener{
 		panel_5.add(textFieldS, BorderLayout.NORTH);
 		textFieldS.setColumns(10);
 		
-		panel_7 = new JPanel();
-		contentPane.add(panel_7, BorderLayout.EAST);
-		panel_7.setLayout(new BoxLayout(panel_7, BoxLayout.X_AXIS));
-		
 		
 	}
 
@@ -175,6 +170,24 @@ public class Calc extends JFrame implements WindowListener{
 
 	public void setButtonCanc(JButton buttonCanc) {
 		this.buttonCanc = buttonCanc;
+	}
+
+	
+
+	public JPanel getPanel() {
+		return panel;
+	}
+
+	public void setPanel(JPanel panel) {
+		this.panel = panel;
+	}
+
+	public JPanel getPanel_5() {
+		return panel_5;
+	}
+
+	public void setPanel_5(JPanel panel_5) {
+		this.panel_5 = panel_5;
 	}
 
 
@@ -334,6 +347,7 @@ public class Calc extends JFrame implements WindowListener{
 	public void setButtonSign(JButton buttonSign) {
 		this.buttonSign = buttonSign;
 	}
+	
 
 	@Override
 	public void windowOpened(WindowEvent e) {
