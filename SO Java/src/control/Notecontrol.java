@@ -45,7 +45,7 @@ public class Notecontrol implements ActionListener{
 		note.getMntmNewMenuItem_5().addActionListener(this);
 		note.getMntmNewMenuItem_6().addActionListener(this);
 		note.getMntmNewMenuItem_7().addActionListener(this);
-		name=note.getName();
+		selectedFile= new File(note.getName());
 		noteCount=count;
 		count++;
 		addNoteToList();
@@ -120,11 +120,11 @@ public class Notecontrol implements ActionListener{
        if (o.compareTo("Exit")==0) {
     	 // se chiudi, chiude sessione attuale
     	 // se file è aperto, salvo sessione corrente su file e chiudo tutto
-    	if (name.compareTo("Uknown")!=0) {
+    	if (selectedFile.getName().compareTo("Uknown")!=0) {
        		txt=note.getTextArea().getText();
        		FileWriter writer;
 	   		try {
-	   			writer = new FileWriter("./file/"+name);
+	   			writer = new FileWriter(selectedFile);
 	   			writer.write(txt);
 	   			writer.close();
 	   		} catch (IOException e1) {
@@ -135,19 +135,19 @@ public class Notecontrol implements ActionListener{
    		note.setVisible(false);
    		note.setTitle("Uknown - NotePad");
    		setFileListName("Uknown");
-   		name="Uknown";
+   		selectedFile=new File("Uknown");
        }
        
        if (o.compareTo("Save")==0) {
     	   //se salva, salvo stato corrente ma continuo a far scrivere
            //se salva come, salvo sessione corrente, con un testo scelto dallo user
     	   txt=note.getTextArea().getText();
-    	   if (fileList.get(noteCount).compareTo(""+noteCount)!=0 && name.compareTo("Uknown")!=0) {
+    	   if (fileList.get(noteCount).compareTo(""+noteCount)!=0 && selectedFile.getName().compareTo("Uknown")!=0) {
     		   printFileList();
-    		   System.out.println(name);
+    		   System.out.println(selectedFile.getName());
     		   try {
         		   //scrittura su file aperto e quindi salvataggio in file
-        		    FileWriter writer = new FileWriter("./file/"+name);
+        		    FileWriter writer = new FileWriter(selectedFile);
        				writer.write(txt);
        				writer.close();
        				JOptionPane.showMessageDialog(null, "Save successful!!");
@@ -160,12 +160,12 @@ public class Notecontrol implements ActionListener{
        if (o.compareTo("Open")==0) {
     	   // se un file è già aperto pulisco textarea e apro nuova scheda
     	   // se Open, faccio scegliere il documento e lo apro (come prima)
-    	   if (name.compareTo("Uknown")!=0) {
+    	   if ((""+selectedFile).compareTo("Uknown")!=0) {
     		   note.getTextArea().setText("");
         	   note.setVisible(false);
         	   note.setVisible(true);
-        	   note.setTitle(name+" - NotePad");
-        	   setFileListName(name);
+        	   note.setTitle(selectedFile+" - NotePad");
+        	   setFileListName(""+selectedFile);
     	   }
     	   String[] files;
     	   File f = new File("./file/");
@@ -226,11 +226,11 @@ public class Notecontrol implements ActionListener{
     	//se apro nuova finestra, pulisco text area e libero il nome del file aperto
     	//se New, salvo stato corrente, chiudo finestra e apro finestra nuova
         // -> se c'è un file aperto, salvo il file, lo chiudo e apro quello nuovo
-    	if (name.compareTo("Uknown")!=0) {
+    	if ((""+selectedFile).compareTo("Uknown")!=0) {
     		txt=note.getTextArea().getText();
     		FileWriter writer;
 			try {
-				writer = new FileWriter("./file/"+name);
+				writer = new FileWriter(selectedFile);
 				writer.write(txt);
 				writer.close();
 			} catch (IOException e1) {
@@ -242,32 +242,32 @@ public class Notecontrol implements ActionListener{
 		note.setVisible(true);
 		note.setTitle("Uknown - NotePad");
 		setFileListName("Uknown");
-		name="Uknown";
+		selectedFile=new File("Uknown");
        }
        if (o.compareTo("Save as...")==0) {
     	   //se sceglie di salvare, se file inesistente lo crea e salva il documento se non è vuoto
     	   // -> se il file esite già, lo sovrascrive
     	   String input = JOptionPane.showInputDialog("Save file as:");
     	   saveN=input;
-    	   if (! fileIsOpen(saveN) || ( fileIsOpen(saveN) && saveN.compareTo(name)==0)) {
-    		   if (saveN==null && (name.compareTo("Uknown")!=0 || fileList.get(noteCount).compareTo(""+noteCount)!=0)) {
+    	   if (! fileIsOpen(saveN) || ( fileIsOpen(saveN) && saveN.compareTo(selectedFile.getName())==0)) {
+    		   if (saveN==null && ((""+selectedFile).compareTo("Uknown")!=0 || fileList.get(noteCount).compareTo(""+noteCount)!=0)) {
     	    		 //salvo in file già aperto
     	    		 //ho un file aperto
     				 //altrimenti non ho file aperto
-    	        	   note.setTitle(name+" - NotePad");
-    	        	   setFileListName(name);
+    	        	   note.setTitle(""+selectedFile);
+    	        	   setFileListName(""+selectedFile);
     	        	   txt=note.getTextArea().getText();
     	        	   try {
-	    	   				File myObj = new File("./file/"+name);
+	    	   				File myObj = new File(""+selectedFile);
 	    			  	    if (myObj.createNewFile()) {
 	    			  	        FileWriter writer;
-	    		   				writer = new FileWriter("./file/"+name);
+	    		   				writer = new FileWriter(selectedFile);
 	    		   				writer.write(txt);
 	    		   				writer.close();
 	    			  	    } else {
 	    			  	    	JOptionPane.showMessageDialog(null, "The file will be overwrite!");
 	    			  	        FileWriter writer;
-	    		   				writer = new FileWriter("./file/"+name);
+	    		   				writer = new FileWriter(selectedFile);
 	    		   				writer.write(txt);
 	    		   				writer.close();
 	    			  	    }
@@ -296,7 +296,8 @@ public class Notecontrol implements ActionListener{
        	   			} catch (IOException e1) {
        	   				e1.printStackTrace();
        	   			}
-	            	   name=saveN; 
+	            	   //name=saveN;
+	            	   selectedFile=new File(saveN);
     	    	   }
     	   }else {
     		   //the user is trying to save in a file that is already open 
@@ -310,13 +311,14 @@ public class Notecontrol implements ActionListener{
 	}
 	public void openFile(String fileS) {
 		String s="";
-		name=fileS;
 		FileReader reader;
+		File file= new File(fileS);
+		
 		try {
 			//lettura file e apertura documento e scrittura dentro a text area di testo già scritto
-			note.setTitle(name+" - NotePad");
-			setFileListName(name);
-			reader = new FileReader("./file/"+name);
+			note.setTitle(fileS+" - NotePad");
+			setFileListName(fileS);
+			reader = new FileReader(fileS);
 			int character;
 	        while ((character = reader.read()) != -1) {
 	        	s=s+(char) character;
@@ -326,12 +328,9 @@ public class Notecontrol implements ActionListener{
 		} catch (IOException e1) {
 			e1.printStackTrace();
 		}
-		//if (note.getName().compareTo("Uknown")==0) {
-		//	note.setName(name);
-		//}
 	}
 	public void addNoteToList() {
-		fileList.add(name);
+		fileList.add(""+selectedFile);
 	}
 	public void printFileList() {
 		System.out.println("File list: ");
@@ -383,11 +382,10 @@ public class Notecontrol implements ActionListener{
 		}
 	}
 	private void writeOnFile(String s) {
-    	txt=note.getTextArea().getText();
     	FileWriter writer;
 		try {
 			writer = new FileWriter(selectedFile);
-			writer.write(txt);
+			writer.write(s);
 			writer.close();
 		} catch (IOException e1) {
 			e1.printStackTrace();

@@ -5,6 +5,7 @@ import java.awt.event.ActionListener;
 import java.io.File;
 import java.io.IOException;
 
+import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
 
 import view.FileExplorer;
@@ -13,6 +14,9 @@ import view.Note;
 public class FileExplorerontrol implements ActionListener{
 	private FileExplorer fileE;
 	private String s,t,v,n;
+	private JFileChooser fileChooser;
+	private String userDir;
+	private File selectedFile;
 	
 	public FileExplorerontrol(FileExplorer fileExplorer) {
 		this.fileE=fileExplorer;
@@ -27,6 +31,14 @@ public class FileExplorerontrol implements ActionListener{
 		//per resettare la finestra, usare fileE.refresh()
 		if (e.getSource()==fileE.getBtnNewButton()) {
 			//if button selected, open a fileChooser window
+			userDir = System.getProperty("user.home");
+			fileChooser = new JFileChooser(userDir +"/Desktop");
+			int result = fileChooser.showOpenDialog(fileChooser);
+			if (result == JFileChooser.APPROVE_OPTION) {
+				selectedFile = fileChooser.getSelectedFile();
+				fileE.getTextField().setText(""+selectedFile);
+				fileE.getTextField_1().setText(""+selectedFile);
+			}
 		}
 		if (e.getSource()==fileE.getBtnNewButton_1()) {
 			t=""+fileE.getTextField().getText();
@@ -48,7 +60,7 @@ public class FileExplorerontrol implements ActionListener{
 			v=""+fileE.getTextField_1().getText();
 			if (! v.isBlank()) {
 				//delete file
-				File myObj = new File("./file/"+v);
+				File myObj = new File(v);
 				
 				if (! Notecontrol.fileIsOpen(v)) {
 					if (myObj.delete()) { 
@@ -72,7 +84,7 @@ public class FileExplorerontrol implements ActionListener{
 				//create new file
 				//check if file don't exist, in this case create it
 				try {
-	   				File myObj = new File("./file/"+n);
+	   				File myObj = new File(n);
 			  	    if (myObj.createNewFile()) {
 			  	        System.out.println("File created: " + myObj.getName());
 			  	        JOptionPane.showMessageDialog(null, "File created: "+n);
