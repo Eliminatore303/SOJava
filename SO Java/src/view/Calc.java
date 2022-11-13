@@ -152,6 +152,8 @@ public class Calc extends JFrame implements WindowListener{
 		textFieldW.setHorizontalAlignment(SwingConstants.RIGHT);
 		textFieldW.setText("0");
 		textFieldW.setColumns(10);
+		textFieldW.setFocusable(true);
+		textFieldW.requestFocus();
 		
 		textFieldS = new JTextField();
 		textFieldS.setHorizontalAlignment(SwingConstants.RIGHT);
@@ -159,7 +161,7 @@ public class Calc extends JFrame implements WindowListener{
 		panel_5.add(textFieldS, BorderLayout.NORTH);
 		textFieldS.setColumns(10);
 		
-		
+
 	}
 
 	public JButton getButtonCanc() {
