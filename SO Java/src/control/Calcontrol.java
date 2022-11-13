@@ -65,7 +65,7 @@ public class Calcontrol implements ActionListener,KeyListener{
 					calc.getTextFieldS().setText("");
 				}
 			}else {
-				if (button.getText().compareTo(".")!=0) {
+				if (button.getText().compareTo(".")!=0 && button.getText().compareTo("+/-")!=0) {
 					try {
 						//numeri
 						Integer.parseInt(button.getText());
@@ -179,16 +179,31 @@ public class Calcontrol implements ActionListener,KeyListener{
 						}
 					}
 				}else {
-					//decimali
-					try {
-					
-						Integer.parseInt(s);
-						s+=button.getText();
-						calc.getTextFieldW().setText(s);
-					} catch (NumberFormatException e2) {
-						// TODO: handle exception
+					if (button.getText().compareTo(".")==0) {
+						//decimali
+						try {
+						
+							Integer.parseInt(s);
+							s+=button.getText();
+							calc.getTextFieldW().setText(s);
+						} catch (NumberFormatException e2) {
+							// TODO: handle exception
+						}
 					}
-				
+					if (button.getText().compareTo("+/-")==0) {
+						if (Integer.parseInt(s)!=0) {
+							if (Integer.parseInt(s)>0) {
+								//positivo -> diventa negativo
+								calc.getTextFieldW().setText("-"+s);
+							}else {
+								//negativo -> tolgo il segno
+								String temp;
+								temp=s.substring(1,s.length());
+								calc.getTextFieldW().setText(temp);
+							}
+						}
+						//calc.getTextFieldW().setText(""+button.getText());
+					}
 				}
 			}
 		}else {

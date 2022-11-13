@@ -70,5 +70,11 @@ public class testKey extends JFrame {
 			}
 		});
 		scrollPane.setViewportView(textArea);
+		
+		int x=-23;
+		String temp=""+x;
+		System.out.println(temp);
+		System.out.println(Integer.parseInt(temp)==0);
+		System.out.println(temp.substring(1, temp.length()));
 	}
 }
