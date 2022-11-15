@@ -17,7 +17,7 @@ Cose da fare:
 
 In futuro:
 
-1) per la calcolatrice utilizzare anche il tastierino numerico e i numeri della tastiera come input;
+1) per la calcolatrice utilizzare anche il tastierino numerico e i numeri della tastiera come input; (Done)
 2) inserire "a capo automatico" nel Note come opzione;
 3) poter gestire i vari file anche in cartelle esterne al progetto;
 4) sistemazione del ridimensionamento delle finestre (autoridimensionamento oggetti nelle finestre);
@@ -29,5 +29,5 @@ In futuro:
 
 Opzioni per eventi: KeyListener
 Menu per scegliere opzioni del note: JMenuBar + JMenuItem (Con aggiunta di scelta rapida) (Done)
-FileChooser per navigare nel file sistem (apertura file)
+FileChooser per navigare nel file sistem (apertura file) (Done)
 

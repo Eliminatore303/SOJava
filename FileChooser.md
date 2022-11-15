@@ -3,11 +3,11 @@
 Pakage di Java che permette di scegliere un file con una OptionPane apposita.
 Cose da fare:
 - Studiare come funziona (Done);
-- Inserire relative funzioni in Note:
-	- Scelta;
-	- Scrittura;
-	- Lettura;
-- Sostituzione di codice del Note con chiamata a funzioni;
+- Inserire relative funzioni in Note (Done):
+	- Scelta; (Done)
+	- Scrittura; (Done)
+	- Lettura; (Done)
+- Sostituzione di codice del Note con chiamata a funzioni; (Done)
 - FileExplorer quando aperto non carica più i file da /file: (Done)
 	- Se selezionato il bottone, aprirà una finestra dove permette di scegliere il file (Done);
 - Gestione Eccezione:
