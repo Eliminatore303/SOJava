@@ -191,9 +191,8 @@ public class Notecontrol implements ActionListener{
        if (o.compareTo("Save as...")==0) {
     	   //se sceglie di salvare, se file inesistente lo crea e salva il documento se non è vuoto
     	   // -> se il file esite già, lo sovrascrive
-    	   String input = JOptionPane.showInputDialog("Save file as:");
-    	   saveN=input;
-    	   if (! fileIsOpen(saveN) || ( fileIsOpen(saveN) && saveN.compareTo(selectedFile.getName())==0)) {
+    	   saveN= getFile().getPath();
+    	   if (! fileIsOpen(saveN) || ( fileIsOpen(saveN) && saveN.compareTo(selectedFile.getPath())==0)) {
     		   if (saveN==null && ((""+selectedFile).compareTo("Uknown")!=0 || fileList.get(noteCount).compareTo(""+noteCount)!=0)) {
     	    		 //salvo in file già aperto
     	    		 //ho un file aperto
@@ -204,16 +203,10 @@ public class Notecontrol implements ActionListener{
     	        	   try {
 	    	   				File myObj = new File(""+selectedFile);
 	    			  	    if (myObj.createNewFile()) {
-	    			  	        FileWriter writer;
-	    		   				writer = new FileWriter(selectedFile);
-	    		   				writer.write(txt);
-	    		   				writer.close();
+	    			  	        writeOnFile(txt);
 	    			  	    } else {
 	    			  	    	JOptionPane.showMessageDialog(null, "The file will be overwrite!");
-	    			  	        FileWriter writer;
-	    		   				writer = new FileWriter(selectedFile);
-	    		   				writer.write(txt);
-	    		   				writer.close();
+	    			  	    	writeOnFile(txt);
 	    			  	    }
 	    	   			} catch (IOException e1) {
 	    	   				e1.printStackTrace();
@@ -223,29 +216,23 @@ public class Notecontrol implements ActionListener{
 	            	   note.setTitle(saveN+" - NotePad");
 	            	   setFileListName(saveN);
 	            	   txt=note.getTextArea().getText();
-	            	   try {
-       	   				File myObj = new File("./file/"+saveN);
+	            	try {
+       	   				File myObj = new File(saveN);
+       	   				
        			  	    if (myObj.createNewFile()) {
-       			  	        FileWriter writer;
-       		   				writer = new FileWriter("./file/"+saveN);
-       		   				writer.write(txt);
-       		   				writer.close();
+       			  	    	writeOnFile(txt);
        			  	    } else {
        			  	    	JOptionPane.showMessageDialog(null, "The file will be overwrite!");
-       			  	        FileWriter writer;
-       		   				writer = new FileWriter("./file/"+saveN);
-       		   				writer.write(txt);
-       		   				writer.close();
+       			  	    	writeOnFile(txt);
        			  	    }
-       	   			} catch (IOException e1) {
-       	   				e1.printStackTrace();
-       	   			}
-	            	   //name=saveN;
+	       	   		} catch (IOException e1) {
+	       	   				e1.printStackTrace();
+	       	   		}
 	            	   selectedFile=new File(saveN);
     	    	   }
     	   }else {
     		   //the user is trying to save in a file that is already open 
-			JOptionPane.showMessageDialog(null, "The file you are trying to save in is already open from an other note, try an other one!!!");
+    		   JOptionPane.showMessageDialog(null, "The file you are trying to save-in, is already open from an other note, try an other one!!!");
     	   }
     	   
        }
