@@ -4,6 +4,7 @@ import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.File;
+import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
@@ -20,7 +21,6 @@ import view.Note;
 public class Notecontrol implements ActionListener{
 	private Note note;
 	private String txt;
-	private String name="";
 	private String saveN="";
 	//get the file i will open
 	private String openF="";
@@ -123,14 +123,9 @@ public class Notecontrol implements ActionListener{
     	 // se file è aperto, salvo sessione corrente su file e chiudo tutto
     	if (selectedFile.getName().compareTo("Uknown")!=0) {
        		txt=note.getTextArea().getText();
-       		FileWriter writer;
-	   		try {
-	   			writer = new FileWriter(selectedFile);
-	   			writer.write(txt);
-	   			writer.close();
-	   		} catch (IOException e1) {
-	   			e1.printStackTrace();
-	   		}
+       		if (! writeOnFile(txt)) {
+       			JOptionPane.showMessageDialog(null, "It wasn't possbile to save");
+			}
    		}
    		note.getTextArea().setText("");
    		note.setVisible(false);
@@ -145,17 +140,10 @@ public class Notecontrol implements ActionListener{
     	   txt=note.getTextArea().getText();
     	   if (fileList.get(noteCount).compareTo(""+noteCount)!=0 || selectedFile.getName().compareTo("Uknown")!=0) {
     		   printFileList();
-    		   System.out.println(selectedFile);
-    		   System.out.println(txt);
-    		   try {
-        		   //scrittura su file aperto e quindi salvataggio in file
-        		    FileWriter writer = new FileWriter(selectedFile);
-       				writer.write(txt);
-       				writer.close();
-       				JOptionPane.showMessageDialog(null, "Save successful!!");
-        			} catch (IOException e1) {
-        				e1.printStackTrace();
-        		}
+    		 //scrittura su file aperto e quindi salvataggio in file
+    		   if (writeOnFile(txt)) {
+    			   
+    		   }
     	   }
     	   
        }
@@ -169,60 +157,21 @@ public class Notecontrol implements ActionListener{
         	   note.setTitle(selectedFile+" - NotePad");
         	   setFileListName(""+selectedFile);
     	   }
-    	   String[] files;
-    	   File f = new File("./file/");
-    	   JComboBox fileList=new JComboBox();
-    	   JButton bottone_1= new JButton();
-    	   bottone_1.setText("Select File!");
-    	   // Populates the array with names of files and directories
-    	   files = f.list();
-	       for (int i = 0; i < files.length; i++) {
-	    	   fileList.addItem(new String(files[i]));
-	       }
-	       //creazione finestra con relativi file e quindi opzioni di apertura
-    	   fileList.setSelectedIndex(0);
-    	   Object[] option= new Object[] {};
-    	   JOptionPane jop=new JOptionPane("Lista di File ",JOptionPane.QUESTION_MESSAGE,JOptionPane.DEFAULT_OPTION,null,option,null);
-    	   jop.add(fileList);
-    	   jop.add(bottone_1);
-    	   
-    	   JDialog diag = new JDialog();
-	       diag.getContentPane().add(jop);
-	       diag.setBounds(150, 150, 340, 130);
-	       diag.pack();
-	       diag.setResizable(false);
-	       diag.setVisible(true);
-    	   
-	       bottone_1.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				String s="";
-				openF=(String) fileList.getSelectedItem();
-				diag.setVisible(false);
-				//if the file i want to open is already open, it will not be open otherwise it can be open
+    	   File f;
+    	   f=getFile();
+	       if (f!=null) {
+				openF=f.getPath();
 				if (! fileIsOpen(openF)) {
-					FileReader reader;
-					try {
-						//lettura file e apertura documento e scrittura dentro a text area di testo già scritto
-						note.setTitle(openF+" - NotePad");
-						setFileListName(openF);
-						reader = new FileReader("./file/"+openF);
-						 int character;
-				           while ((character = reader.read()) != -1) {
-				           	s=s+(char) character;
-				           }
-				           reader.close();
-				         note.getTextArea().setText(s);
-				         s="";
-				         name=openF;
-					} catch (IOException e1) {
-						e1.printStackTrace();
-					}
+					//lettura file e apertura documento e scrittura dentro a text area di testo già scritto
+					note.setTitle(openF+" - NotePad");
+					setFileListName(openF);
+			        note.getTextArea().setText(readFile(openF));
+			        selectedFile=new File(openF);
 				}else {
+					//if the file i want to open is already open, it will not be open otherwise it can be open
 					JOptionPane.showMessageDialog(null, "File already open you can't open it an other time!!!");
 				}
-				
 			}
-	       });
        }
        if (o.compareTo("New")==0) {
     	//se apro nuova finestra, pulisco text area e libero il nome del file aperto
@@ -230,14 +179,7 @@ public class Notecontrol implements ActionListener{
         // -> se c'è un file aperto, salvo il file, lo chiudo e apro quello nuovo
     	if ((""+selectedFile).compareTo("Uknown")!=0) {
     		txt=note.getTextArea().getText();
-    		FileWriter writer;
-			try {
-				writer = new FileWriter(selectedFile);
-				writer.write(txt);
-				writer.close();
-			} catch (IOException e1) {
-				e1.printStackTrace();
-			}
+    		writeOnFile(txt);
 		}
 		note.getTextArea().setText("");
 		note.setVisible(false);
@@ -308,29 +250,15 @@ public class Notecontrol implements ActionListener{
     	   
        }
 	}
-	public void setNameEmpty() {
-		name="";
-	}
 	public void openFile(String fileS) {
 		String s="";
-		FileReader reader;
+		//FileReader reader;
 		File file= new File(fileS);
 		selectedFile= new File(fileS);
-		try {
-			//lettura file e apertura documento e scrittura dentro a text area di testo già scritto
-			note.setName(""+noteCount);
-			note.setTitle(fileS+" - NotePad");
-			setFileListName(fileS);
-			reader = new FileReader(fileS);
-			int character;
-	        while ((character = reader.read()) != -1) {
-	        	s=s+(char) character;
-	        }
-	       // reader.close();
-	        note.getTextArea().setText(s);
-		} catch (IOException e1) {
-			e1.printStackTrace();
-		}
+		note.setName(""+noteCount);
+		note.setTitle(fileS+" - NotePad");
+		setFileListName(fileS);
+		note.getTextArea().setText(readFile(fileS));
 	}
 	public void addNoteToList() {
 		fileList.add(""+selectedFile);
@@ -374,28 +302,40 @@ public class Notecontrol implements ActionListener{
 	private void setFileListName(String s) {
 		fileList.set(noteCount, s);
 	}
-	private void getFile() {
+	private File getFile() {
 		userDir = System.getProperty("user.home");
 		fileChooser = new JFileChooser(userDir +"/Desktop");
 		int result = fileChooser.showOpenDialog(fileChooser);
 		if (result == JFileChooser.APPROVE_OPTION) {
-			selectedFile = fileChooser.getSelectedFile();
-			//fileChooser.getn
+			return fileChooser.getSelectedFile();
 			//selectedFile will replace the variable that save the file
+		}else {
+			return null;
 		}
 	}
-	private void writeOnFile(String s) {
-    	FileWriter writer;
+	private boolean writeOnFile(String s) {
 		try {
+			FileWriter writer;
 			writer = new FileWriter(selectedFile);
 			writer.write(s);
 			writer.close();
+			return true;
 		} catch (IOException e1) {
 			e1.printStackTrace();
+			return false;
 		}
 	}
-	private String readFile() {
+	private String readFile(String fileS) {
 		String s="";
+		try {
+			FileReader reader = new FileReader(fileS);
+			int character;
+	        while ((character = reader.read()) != -1) {
+	        	s=s+(char) character;
+	        }
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
 		return s;
 	}
 }
