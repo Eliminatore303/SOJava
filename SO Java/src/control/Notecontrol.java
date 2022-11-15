@@ -45,7 +45,8 @@ public class Notecontrol implements ActionListener{
 		note.getMntmNewMenuItem_5().addActionListener(this);
 		note.getMntmNewMenuItem_6().addActionListener(this);
 		note.getMntmNewMenuItem_7().addActionListener(this);
-		selectedFile= new File(note.getName());
+		//selectedFile= new File(note.getName());
+		//System.out.println(note.getName());
 		noteCount=count;
 		count++;
 		addNoteToList();
@@ -142,9 +143,10 @@ public class Notecontrol implements ActionListener{
     	   //se salva, salvo stato corrente ma continuo a far scrivere
            //se salva come, salvo sessione corrente, con un testo scelto dallo user
     	   txt=note.getTextArea().getText();
-    	   if (fileList.get(noteCount).compareTo(""+noteCount)!=0 && selectedFile.getName().compareTo("Uknown")!=0) {
+    	   if (fileList.get(noteCount).compareTo(""+noteCount)!=0 || selectedFile.getName().compareTo("Uknown")!=0) {
     		   printFileList();
-    		   System.out.println(selectedFile.getName());
+    		   System.out.println(selectedFile);
+    		   System.out.println(txt);
     		   try {
         		   //scrittura su file aperto e quindi salvataggio in file
         		    FileWriter writer = new FileWriter(selectedFile);
@@ -313,9 +315,10 @@ public class Notecontrol implements ActionListener{
 		String s="";
 		FileReader reader;
 		File file= new File(fileS);
-		
+		selectedFile= new File(fileS);
 		try {
 			//lettura file e apertura documento e scrittura dentro a text area di testo già scritto
+			note.setName(""+noteCount);
 			note.setTitle(fileS+" - NotePad");
 			setFileListName(fileS);
 			reader = new FileReader(fileS);

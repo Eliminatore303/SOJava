@@ -8,8 +8,8 @@ Cose da fare:
 	- Scrittura;
 	- Lettura;
 - Sostituzione di codice del Note con chiamata a funzioni;
-- FileExplorer quando aperto non carica più i file da /file:
-	- Se selezionato il bottone, aprirà una finestra dove permette di scegliere il file;
+- FileExplorer quando aperto non carica più i file da /file: (Done)
+	- Se selezionato il bottone, aprirà una finestra dove permette di scegliere il file (Done);
 - Gestione Eccezione:
 	- Modifica posizione file già aperto;
 	- Modifica nome file già aperto;
