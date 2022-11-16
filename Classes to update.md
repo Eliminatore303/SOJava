@@ -14,8 +14,8 @@ Calc:
 2) aggiungere evento KeyListener alla textFiled (Done);
 3) completare keyListenere sulla textfiled (Done);
 3.1) controllo di tasto premuto con funzione di cerca su ArrayList dei valori numerici (Done);
-4) aggiungere opzioni a calcolatrice:
-4.1) backspace "<-";
+4) aggiungere opzioni a calcolatrice: (Done);
+4.1) backspace "<-"; (Done);
 4.2) cambio sengo "+/-" (Done);
 5) sistemare errore dove bisogna selezionare la casella di testo per far funzionare i keyListener (Done);
 6) sistemare errore dove i valori dei tasti non corrispondono se si usa lo "shift" (Done);

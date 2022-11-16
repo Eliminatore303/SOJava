@@ -47,6 +47,7 @@ public class Calc extends JFrame implements WindowListener{
 	private JButton button8;
 	private JButton buttonSign;
 	private JButton buttonCanc;
+	private JButton buttonBackSpace;
 	
 	public Calc() {
 		icon= new ImageIcon(getClass().getClassLoader().getResource("calc.png"));
@@ -140,6 +141,10 @@ public class Calc extends JFrame implements WindowListener{
 		buttonCanc = new JButton("Canc");
 		buttonCanc.setBounds(10, 11, 63, 23);
 		panel.add(buttonCanc);
+		
+		buttonBackSpace = new JButton("<-");
+		buttonBackSpace.setBounds(156, 11, 63, 23);
+		panel.add(buttonBackSpace);
 		
 		panel_5 = new JPanel();
 		contentPane.add(panel_5, BorderLayout.NORTH);
@@ -349,7 +354,14 @@ public class Calc extends JFrame implements WindowListener{
 	public void setButtonSign(JButton buttonSign) {
 		this.buttonSign = buttonSign;
 	}
-	
+
+	public JButton getButtonBackSpace() {
+		return buttonBackSpace;
+	}
+
+	public void setButtonBackSpace(JButton buttonBackSpace) {
+		this.buttonBackSpace = buttonBackSpace;
+	}
 
 	@Override
 	public void windowOpened(WindowEvent e) {
