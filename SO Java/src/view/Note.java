@@ -54,7 +54,7 @@ public class Note extends JFrame implements WindowListener{
 		setContentPane(contentPane);
 		contentPane.setLayout(new BorderLayout(0, 0));
 		setVisible(true);
-		setResizable(false);
+		//setResizable(false);
 		
 		panel_1 = new JPanel();
 		contentPane.add(panel_1, BorderLayout.CENTER);
